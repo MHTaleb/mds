@@ -1,0 +1,70 @@
+body {
+	margin: 0;
+    height: 100%;
+    width: 100%;
+	background : #EAE5E5;
+	background : linear-gradient(to bottom right, #F4F4F4, #E5E5E5);
+	background-attachment:fixed;
+}
+
+.container {
+	width : 340px;
+	left : 50%;
+	top : 50%;
+	position : absolute;
+	margin : -178px 0 0 -170px;
+	border : #D8D8D8 solid 1px;
+	border-radius : 4px;
+	background-color : white;
+	overflow : hidden;
+	box-shadow : 0 0 6px #C1C1C1;
+}
+
+.edit {
+	display : block;
+	width : 282px;
+	font-family : calibri;
+	font-size : 18px;
+	margin : 0 20px 20px 20px;
+	outline : none;
+	padding : 8px;
+	border : #dcdcdc solid 1px;
+	transition : box-shadow 0.3s, border 0.3s;
+}
+
+.edit:focus {
+	border : #B7B7B7 solid 1px;
+	box-shadow : 0 0 5px 1px #CCCCCC;
+}
+
+.showHidePW{
+	width: 18px; 
+	position: absolute; 
+	left: 290px;
+    top: 219px;
+	cursor: pointer; 
+	opacity: 0.33
+}
+
+.btn {
+	background-color : #666666;
+	border : #515151 solid 1px;
+	color : #D6D6D6;
+	padding : 6px 32px;
+	text-align : center;
+	text-decoration : none;
+	display : inline-block;
+	font-size : 18px;
+	margin : 20px 0 0 80px;
+	height : 40px;
+	width : 180px;
+	transition-duration : 0.4s;
+	cursor : pointer;
+	font-family : calibri;
+	border-radius : 2px;
+}
+
+.btn:hover {
+	background-color : #777777;
+	color : #D6D6D6;
+}

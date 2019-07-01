@@ -1,0 +1,113 @@
+<html>
+	<head>
+
+		
+		<script  src="http://localhost:9999/MDS-WEB-RESSOURCE/js/client/client.js" type="text/javascript"></script>
+	
+		<script  src="http://localhost:9999/MDS-WEB-RESSOURCE/js/client/service.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="list-panel-client" class="list-panel">
+			<div style="display: flex; margin: 20px;">
+				
+				<form id="search-client-form" class="search-form">
+					<input id="search-client" class="edit" type="text" placeholder="Rechercher un client..."/>
+				</form>
+				<div id="menu0-func1-menu0" class="menu-H" style="margin: 0 30px;">
+					<ul class="menu-H-functions">
+						<li class="menu-H-func" id="menu0-func1-menu0-func0">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/new.svg);"></div>
+							<span class="menu-H-func-title">Nouveau</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func1-menu0-func1">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/pdf.svg);"></div>
+							<span class="menu-H-func-title">Exporter en PDF</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func1-menu0-func2">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/xls.svg);"></div>
+							<span class="menu-H-func-title">Exporter en XLS</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func1-menu0-func3">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/print.svg);"></div>
+							<span class="menu-H-func-title">Imprimer</span>
+						</li>
+					</ul>
+				</div>
+				<div id="extend-arrow-func1" class="extend-arrow extend-arrow-right"></div>
+			</div>
+			<div style="height: calc(100% - 62px);">
+				<div class="grid">
+					<div class="list-header-container">
+						<div class="list-header">
+							<div class="column left" style="width: 50px;">Réf.</div>
+							<div class="column left dynamic" style="width: 180px; display: none;">Identifiant</div>
+							<div class="column left" style="width: 50%;">Nom</div>
+							<div class="column left dynamic" style="width: 180px; display: none;">Adresse</div>
+							<div class="column left dynamic" style="width: 180px; display: none;">Ville</div>
+							<div class="column left dynamic" style="width: 120px; display: none;">Téléphone</div>
+							<div class="column left dynamic" style="width: 120px; display: none;">Portable</div>
+							<div class="column left" style="width: 50%;">E-mail</div>
+							<div class="column left dynamic" style="width: 120px; display: none;">Non facturé</div>
+						</div>
+					</div>
+					<div id="clientList" class="list-body-container has-footer">
+						<div id="cl0" class="row">
+							<div class="column right" style="width: 50px;">1</div>
+							<div class="column left dynamic" style="width: 50%;">Customer Company Ltd.</div>
+							<div class="column left" style="width: 50%;">Nom</div>
+							<div class="column left dynamic" style="width: 180px; display: none;"></div>
+							<div class="column left dynamic" style="width: 180px; display: none;"></div>
+							<div class="column left dynamic" style="width: 120px; display: none;"></div>
+							<div class="column left dynamic" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com <br/> fdfqsfsfsfs</div>
+							<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+						</div>
+						<div id="cl1" class="row">
+							<div class="column right" style="width: 50px;">1</div>
+							<div class="column left dynamic" style="width: 50%;">Customer Company Ltd.</div>
+							<div class="column left dynamic" style="width: 180px; display: none;"></div>
+							<div class="column left dynamic" style="width: 180px; display: none;"></div>
+							<div class="column left dynamic" style="width: 120px; display: none;"></div>
+							<div class="column left dynamic" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com</div>
+							<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+						</div>
+					</div>
+					<div class="footer">
+						<div class="column right hasSummary" style="width: 50px;">Total</div>
+						<div class="column left" style="width: 50%;"></div>
+						<div class="column left" style="width: 180px; display: none;"></div>
+						<div class="column left" style="width: 180px; display: none;"></div>
+						<div class="column left" style="width: 120px; display: none;"></div>
+						<div class="column left" style="width: 120px; display: none;"></div>
+						<div class="column left" style="width: 50%;"></div>
+						<div class="column right hasSummary" style="width: 120px; display: none;">0,00 DZD</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="detail-panel-client" class="detail-panel">
+			<div id="func1-tabs" class="tabs">
+				<ul>
+					<li id="func1-tab0" class="tab tab-selected">Coordonnées</li>
+					<li id="func1-tab1" class="tab">Factures</li>
+					<li id="func1-tab2" class="tab">Commentaires</li>
+				</ul>
+				<div id="tabs-container" class="tabs-container">
+					<div id="container-func1-tab0" class="tab-container" style="display: block;">
+						
+						tab1
+						
+					</div>
+					<div id="container-func1-tab1" class="tab-container">
+						tab2
+					</div>
+					<div id="container-func1-tab2" class="tab-container">
+						tab3
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

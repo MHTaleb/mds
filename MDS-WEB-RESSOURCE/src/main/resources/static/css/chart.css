@@ -1,0 +1,63 @@
+.chart-container{
+	width: 100%;
+    height: 100%;
+	display: none;
+    display: flex;
+}
+.chart{
+	width: fit-content;
+    height: fit-content;
+    margin: auto;
+}
+.chart h3{
+	text-align: center;
+}
+.chart-legend{
+	height: fit-content;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.canvas .chart-container {
+  display: block;
+}
+
+.bar-chart {
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+}
+.bar-chart li {
+  margin: 0;
+  padding: 0;
+  line-height: 1.45;
+  overflow: auto;
+}
+.bar-chart span {
+  display: block;
+}
+.bar-chart .label {
+  font-weight: 700;
+  width: 70%;
+  float: left;
+	line-height: 30px;
+}
+.bar-chart .percentage {
+  width: 30%;
+  float: right;
+  text-align: right;
+  font-size: 18px;
+    line-height: 30px;
+}
+.bar-chart .bar-track {
+  clear: both;
+  display: block;
+  background: rgba(var(--border-light-color), 1);
+  box-shadow: 0 2px 0 #cccccc;
+  height: 5px;
+  overflow: visible;
+  margin-bottom: 20px;
+}
+.bar-chart .bar {
+  display: block;
+  height: 5px;
+}

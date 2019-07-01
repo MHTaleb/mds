@@ -1,0 +1,71 @@
+@page {
+    size: auto;   /* auto is the initial value */
+    margin: 0;  /* this affects the margin in the printer settings */
+}
+
+body {
+	margin : 0;
+    height : 100vh;
+    width : 100%;
+	background : white;
+	background-attachment : fixed;
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+}
+
+.menu-H{
+	display: none;
+}
+
+.menu-V{
+	display: none;
+}
+
+.grid{
+	padding: 10mm;
+	height: 100%;
+	font-size: var(--grid-font-size);
+}
+
+.list-header-container{
+    height: 8mm;
+    background: rgba(var(--application-color), 1);
+    width: auto;
+	position: relative;
+}
+
+.list-header{
+    height: 8mm;
+	display: flex;
+	color: white;
+	font-weight: bold;
+}
+
+.list-body-container{
+	height: calc(100% - 8mm);
+	overflow: auto;
+}
+
+.has-footer{
+	height: calc(100% - 30mm);
+}
+
+.row{
+    min-height: 10mm;
+	display: flex;
+	border-bottom: 1px solid rgba(var(--border-light-color), 1);
+	color: #7d7d7d;
+}
+
+.column{
+	line-height: 22px;
+    padding: 4px 8px 4px 8px;
+    height: 24px;    
+}
+
+.footer{
+    height: 30px;
+    color: rgba(var(--application-color), 1);
+	font-weight: bold;
+	overflow: hidden;
+}

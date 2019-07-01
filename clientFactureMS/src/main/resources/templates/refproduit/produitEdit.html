@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script src="http://localhost:9999/MDS-WEB-RESSOURCE/js/produit/form/init.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1>
+		Formulaire Produit
+		</h1>
+		<form class='form' th:action='@{refproduit}' method='put'>
+			<input type="submit" value="" class="btn">
+			<input type='hidden'  th:name='${_csrf.parameterName}' th:value='${_csrf.token}' />
+			<a id='close-overlay' class='close-btn'></a>
+			<label > produit  
+				<input class="w3-input" name="product_name" type="text"/>
+			</label>
+			<label > Description  
+				<input class="w3-input" name="product_description" type="text"/>
+			</label>
+			<label > Unité 
+				<select class="w3-select" name="product_unit" id=""></select>
+			</label>
+			<label > Tarifs
+				<select class="w3-select" id="productEdit_tarif">
+					<option id="pht">Prix (HT)</option>
+					<option id="pttc">Prix (TTC)</option>
+				</select>
+			</label>
+			<label > Prix (HT)
+				<input class="w3-input" name="product_p_ht" type="text"/>
+			</label>
+			<label > TVA
+				<select class="w3-select" name="product_tva" id=""></select>
+			</label>
+			<label > Prix (TTC)
+				<input class="w3-input" name="product_p_ttc" type="text"/>
+			</label>
+		</form>
+	</body>
+</html>

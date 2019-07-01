@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://localhost:9999/MDS-WEB-RESSOURCE/js" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1>Choisissez les champs à afficher par défaut sur vos devis</h1>
+		<form class='form' th:action='@{/param/facture}' method='put'>
+			<input type="submit" class="btn"/>
+			<input type='hidden'  th:name='${_csrf.parameterName}' th:value='${_csrf.token}' />
+			
+			<label >Nom commercial<select name="" id=""></select></label>
+			<label >Langue<select name="" id=""></select></label>
+			<label >Devise<select name="" id=""></select></label>
+			<label >En-tête de devis<input type="text" class="edit"></label>
+			
+			<label >À l'attention de / Numéro PO
+				<input type="checkbox" name="" id="">
+			</label>
+
+			<label >Date de validité
+				<input type="checkbox" name="" id="">
+			</label>
+
+			<label >Afficher colonnes
+				<select name="" id="">
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+					<option><input type="checkbox" name="" class="w3-check columns-display" value="" /> </option>
+				</select>
+			</label>
+
+		</form>
+	</body>
+</html>

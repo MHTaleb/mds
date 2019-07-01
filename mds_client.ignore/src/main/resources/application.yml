@@ -1,0 +1,8 @@
+spring.application.name: annuaire
+server.port: 0
+
+security.oauth2.resource.token-info-uri: http://localhost:9999/uaa/oauth/check_token
+security.oauth2.client.client-id: mds_group
+security.oauth2.client.client-secret: mds_group
+
+spring.jackson.date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat

@@ -1,0 +1,133 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<div id="list-panel-facture" class="list-panel">
+			<div style="display: flex; margin: 20px;">
+				
+				<form id="search-facture-form" class="search-form">
+					<input id="search-facture" class="edit" type="text" placeholder="Rechercher une facture..."/>
+				</form>
+				<div id="menu0-func2-menu0" class="menu-H" style="margin: 0 30px;">
+					<ul class="menu-H-functions">
+						<li class="menu-H-func" id="menu0-func2-menu0-func0">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/new.svg);"></div>
+							<span class="menu-H-func-title">Nouveau</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func2-menu0-func1">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/pdf.svg);"></div>
+							<span class="menu-H-func-title">Exporter en PDF</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func2-menu0-func2">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/xls.svg);"></div>
+							<span class="menu-H-func-title">Exporter en XLS</span>
+						</li>
+						<li class="menu-H-func" id="menu0-func2-menu0-func3">
+							<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/print.svg);"></div>
+							<span class="menu-H-func-title">Imprimer</span>
+						</li>
+					</ul>
+				</div>
+				<div id="extend-arrow-func1" class="extend-arrow extend-arrow-right"></div>
+			</div>
+			<div style="height: calc(100% - 62px);">
+				<div style="position: absolute;    right: 12px;    z-index: 9;    direction: rtl;">
+					<div id="facture-filter-btn"  class="filter-btn">
+						<svg viewBox="0 0 40 40" preserveAspectRatio="xMidYMid meet" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+							<path fill="#a0a0a0" d="M20,0C9,0,0,2.8,0,6.2V10l15,15v12.5c0,1.4,2.2,2.5,5,2.5c2.8,0,5-1.1,5-2.5V25l15-15V6.2C40,2.8,31,0,20,0z M3.7,5.4
+								c0.9-0.5,2.2-1,3.8-1.5C10.9,3,15.4,2.5,20,2.5c4.6,0,9.1,0.5,12.5,1.5c1.6,0.4,2.9,0.9,3.8,1.5c0.6,0.4,1,0.6,1.1,0.8
+								c-0.2,0.2-0.5,0.5-1.1,0.8c-0.9,0.5-2.2,1-3.8,1.5C29.1,9.5,24.6,10,20,10S10.9,9.5,7.5,8.5C5.9,8.1,4.6,7.6,3.7,7.1
+								c-0.6-0.4-1-0.6-1.1-0.8C2.7,6.1,3.1,5.8,3.7,5.4z"/>
+							</svg>
+						</div>
+						<div id="facture-filter-area" class="popup">
+							<div id="check-all-facture" class="checkbox all">
+								<input id="check1" type="checkbox" checked="checked"/>
+								<label for="check1">Tous</label>
+							</div>
+							<div id="non-paye-facture" class="checkbox">
+								<input id="check2" type="checkbox" checked="checked"/>
+								<label for="check2">Non payées</label>
+							</div>
+							<div id="brouil-facture" class="checkbox">
+								<input id="check3" type="checkbox" checked="checked"/>
+								<label for="check3">Brouillons</label>
+							</div>
+							<div id="retard-facture" class="checkbox">
+								<input id="check4" type="checkbox" checked="checked"/>
+								<label for="check4">En retard</label>
+							</div>
+							<div id="paye-facture" class="checkbox">
+								<input id="check5" type="checkbox" checked="checked"/>
+								<label for="check5">Payées</label>
+							</div>
+							<div id="supp-facture" class="checkbox">
+								<input id="check6" type="checkbox" checked="checked"/>
+								<label for="check6">Supprimées</label>
+							</div>
+						</div>
+					</div>
+					<div class="grid">
+						<div class="list-header-container">
+							<div class="list-header">
+								<div class="column left" style="width: 50px;">Réf.</div>
+								<div class="column left" style="width: 50%;">Nom</div>
+								<div class="column left" style="width: 180px; display: none;">Adresse</div>
+								<div class="column left" style="width: 180px; display: none;">Ville</div>
+								<div class="column left" style="width: 120px; display: none;">Téléphone</div>
+								<div class="column left" style="width: 120px; display: none;">Portable</div>
+								<div class="column left sortBy desc" style="width: 50%;">E-mail</div>
+								<div class="column right" style="width: 120px; display: none;">Non facturé</div>
+							</div>
+							
+						</div>
+						<div class="list-body-container has-footer">
+							<div id="ft0" class="row">
+								<div class="column right Static" style="width: 50px;">1</div>
+								<div class="column left" style="width: 50%;">Customer Company Ltd.</div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com</div>
+								<div class="column right Static" style="width: 120px; display: none;">0,00 DZD</div>
+							</div>
+							<div id="ft0" class="row">
+								<div class="column right Static" style="width: 50px;">1</div>
+								<div class="column left" style="width: 50%;">Customer Company Ltd.</div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com</div>
+								<div class="column right Static" style="width: 120px; display: none;">0,00 DZD</div>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="column right hasSummary" style="width: 50px;">Total</div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column right hasSummary" style="width: 120px; display: none;">0,00 DZD</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="detail-panel-facture" class="detail-panel">
+				<div id="func2-tabs" class="tabs">
+					<ul>
+						<li id="facture-detail" class="tab tab-selected">Détail Facture</li>
+					</ul>
+					<div id="tabs-container" class="tabs-container">
+						<div id="container-facture-detail" class="tab-container" style="display: block;">
+							tab4
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</body>
+	</html>

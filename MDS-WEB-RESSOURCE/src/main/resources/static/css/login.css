@@ -1,0 +1,25 @@
+.login-container {
+	width : 340px;
+	left : 50%;
+	top : 50%;
+	position : absolute;
+	margin : -191px 0 0 -170px;
+	border : 1px solid rgba(var(--border-light-color), 1);
+	border-radius : 4px;
+	background-color : white;
+	overflow : hidden;
+	box-shadow : 0 0 6px #C1C1C1;
+}
+
+#pw{
+	margin-top: 15px;
+}
+
+.showHidePW{
+	width: 18px; 
+	position: absolute; 
+	left: 290px;
+    top: 239px;
+	cursor: pointer; 
+	opacity: 0.33
+}

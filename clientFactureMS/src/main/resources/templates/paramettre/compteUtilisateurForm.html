@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<script src="http://localhost:9999/MDS-WEB-RESSOURCE/js/users/compteUtilisateur.js"></script>
+	</head>
+	<body>
+		<div class="w3-container">
+			<div class="w3-container">
+				<h1> Formulaire Compte</h1>
+			</div>
+			<div class="w3-container">
+				<form class='form' th:action='@{/utilisateur}' method='put' id="userForm">
+					<input type="submit" value="" class="btn">
+					<input type='hidden'  th:name='${_csrf.parameterName}' th:value='${_csrf.token}' />
+					
+					<label><input class="edit" name="user_username" type="text"></label>
+					<label><input id="user_password" class="edit" name="user_password" type="text"></label>
+					
+				</form>
+				<label><input class="edit" id="user_confirm_password" type="text"></label>
+			</div>
+		</div>
+	</body>
+</html>

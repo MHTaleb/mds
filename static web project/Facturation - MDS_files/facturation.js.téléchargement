@@ -1,0 +1,78 @@
+
+
+$(document).ready(function () {
+
+
+	
+	
+	var frm = $('#addClient');
+	frm.submit(function (ev) {
+		$.ajax({
+			type: frm.attr('method'),
+			url: frm.attr('action'),
+			data: frm.serialize(),
+			success: function (data) {
+
+				$('#overlay').css("display","none");
+				
+				notify({
+					type: "success", // alert | success | error | warning | info
+					title: data,
+					overlay: true, 
+					closeBtn: false, 
+					theme: "dark-theme", // default | dark-theme
+					autoHide: true 
+				});
+			}
+		});
+
+		ev.preventDefault();
+	});
+
+
+	
+
+	$('#menu0-func1').on('click', function(){
+        displayList();
+    });
+	
+	$('#close-overlay').on('click', function () {
+		$('#overlay').css("display", "none");
+		$('#addClient').css("display", "none");
+	})
+
+
+	$(".extend-arrow").click(
+		function () {
+			if ($(this).hasClass(
+					'extend-arrow extend-arrow-right')) {
+				$(this).attr('class',
+					'extend-arrow extend-arrow-left');
+				$(this).parent().animate({
+					width: "100%"
+				}, 300);
+				$(this).parent().parent().children(
+					".detail-panel").css("display",
+					"none");
+				$(".dynamic").css("display", "block")
+			} else if ($(this).hasClass(
+					'extend-arrow extend-arrow-left')) {
+				$(this).attr('class',
+					'extend-arrow extend-arrow-right');
+				$(".dynamic").css("display", "none")
+				$(this).parent().animate({
+					width: "50%"
+				}, {
+					complete: function () {
+						$(this).parent().children(
+								".detail-panel")
+							.css("display",
+								"block");
+					}
+				});
+
+			}
+		});
+
+});
+

@@ -1,0 +1,27 @@
+    <!DOCTYPE html>
+    <html xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <meta charset="UTF-8"/>
+            <title>OAuth2 SSO Demo</title>
+            <meta http-equiv='cache-control' content='no-cache'/>
+            <meta http-equiv='expires' content='0'/>
+            <meta http-equiv='pragma' content='no-cache'/>
+            <meta name="viewport" content="width=device-width, initial-scale=0.8"/>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        </head>
+
+        <body>
+            <h1>Login Form</h1>
+
+          
+
+            <div name="loginForm" >
+                <input type="text" placeholder="Username" id="username" name="username" value="user"/><br />
+                <input type="password" placeholder="Password" id="password" name="password" value="password"/><br />
+                <button id="logginButton" onClick="submitForm()">Login</button><br />
+            </div>
+
+            <script type="text/javascript" src="js/Login.js"></script>
+        </body>
+    </html>

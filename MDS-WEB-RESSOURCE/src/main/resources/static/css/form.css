@@ -1,0 +1,52 @@
+form.form {
+	margin: 10vh 40vh;
+	padding: 1vh 2vh;
+	max-height: 80vh;
+	overflow: auto;
+	display: block;
+	background: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+.bold{
+	font-weight: bold;
+	font-size: large;
+	margin-top: 30px;
+	display: inline-block;
+}
+
+label{
+	font-weight: bold;
+	margin-top: 10px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.save-button{
+	margin: auto;
+	display: block;
+}
+
+input[type="file"]{
+	background: transparent;
+	font-weight: bold;
+}

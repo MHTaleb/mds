@@ -1,0 +1,150 @@
+/*
+ * Empty Stylesheet file.
+ * https://www.w3schools.com/colors/colors_trends.asp
+ */
+
+.root{
+    -fx-base:-fx-main-color;
+    -fx-control-inner-background:derive(-fx-main-color,40%);
+}
+
+.mainFxmlClass, .chart .chart-legend , .mainColor{
+    -fx-main-color :#EADEDB,#F6D155,#EDCDC2,#98DDDE,#95DEE3;
+    -fx-background-color: -fx-main-color;
+    -fx-theme-base-color: -fx-main-color;
+}
+
+.split-pane .split-pane-divider{
+    -fx-background-color: derive(-fx-theme-base-color,50%);
+    -fx-font-size :  2px;
+}
+.borderPaneColor{
+    -fx-border-color: derive(-fx-theme-base-color,50%);
+}
+.borderBottomColor{
+    -fx-border-color: transparent transparent derive(-fx-theme-base-color,50%) transparent ;
+
+}
+.table-view {
+    -fx-border-backgroun-color:-fx-theme-base-color,-fx-theme-base-color,-fx-theme-base-color;
+    -fx-backgroun-color:-fx-theme-base-color;
+}
+
+.table-view .virtual-flow .clipped-container .sheet .table-row-cell:odd{
+    -fx-background-color:derive(-fx-theme-base-color,10%);
+}
+.table-view .virtual-flow .clipped-container .sheet .table-row-cell:even{
+    -fx-background-color:derive(-fx-theme-base-color,-10%);
+}
+.table-view .virtual-flow .clipped-container .sheet .table-row-cell:selected{
+    -fx-background-color:derive(-fx-theme-base-color,-20%);
+}
+.button{
+
+    -fx-background-color: #6B5B95;
+    -fx-background-radius: 0; 
+    -fx-text-fill:white;
+    -fx-pref-height : 30px;
+    -fx-pref-width : 100px;
+    -fx-font-family: calibri;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.table-view .column-header-background,.table-view .column-header-background .filler,.scroll-bar .increment-button .increment-arrow,.scroll-bar .decrement-button .decrement-arrow , .scroll-bar,.table-view .column-header-background .show-hide-columns-button, .table-view .column-header-background .nested-column-header ,.table-view .column-header-background .nested-column-header .table-column{
+    -fx-background-color: -fx-theme-base-color;  
+
+}
+
+.scroll-bar .thumb ,.table-view .column-header-background .show-hide-columns-button .show-hide-column-image ,  .jfx-combo-box .arrow-button .arrow{
+    -fx-background-color: derive(-fx-theme-base-color,-50%);  
+    -fx-background-radius: 0; 
+}
+.table-view .column-header-background .nested-column-header .table-column .label .text{
+    -fx-fill: derive(-fx-theme-base-color,-60%);
+    -fx-text-alignment:left;
+}
+.table-view .column-header-background .nested-column-header .table-column .label{
+    -fx-alignment:BASELINE_LEFT;
+}
+.scroll-bar {
+    -fx-font-size: 7px;
+
+}
+
+.table-row-cell{
+    -fx-border-color: -fx-theme-base-color , -fx-theme-base-color ,-fx-theme-base-color;
+    -fx-table-cell-border-color:-fx-theme-base-color ,-fx-theme-base-color, -fx-theme-base-color, -fx-theme-base-color;
+    -fx-cell-size: 38px;
+}
+
+.table-view, .table-view:selected , .table-view:focused , .table-view:focus , .table-view:active , .table-view:visited , .table-view:default , .table-view:pressed
+{
+    -fx-border-color: -fx-theme-base-color, -fx-theme-base-color ,-fx-theme-base-color ;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-selection-bar : derive(-fx-theme-base-color,50%);
+    -fx-selection-bar-non-focused : derive(-fx-theme-base-color,-30%);
+}
+.jfx-list-view{
+    -fx-background-color : derive(-fx-theme-base-color,55%);
+
+}
+.jfx-list-view, .jfx-list-view:selected , .jfx-list-view:focused , .jfx-list-view:focus , .jfx-list-view:active , .jfx-list-view:visited , .jfx-list-view:default , .jfx-list-view:pressed{
+    -fx-border-color: -fx-theme-base-color, -fx-theme-base-color ,-fx-theme-base-color ;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-selection-bar : derive(-fx-theme-base-color,50%);
+    -fx-selection-bar-non-focused : derive(-fx-theme-base-color,-30%);
+}
+.jfx-text-area , .jfx-text-field , .jfx-combo-box{
+    -fx-prompt-text-fill :  derive(-fx-theme-base-color,-50%);
+}
+.jfx-text-area .text{
+    -fx-font-size :  10px;
+}
+/*https://www.w3schools.com/colors/colors_trends.asp*/
+.add{
+    -fx-background-color:  #00A591; /*Arcadia*/
+}
+.update{
+    -fx-background-color:  #2E4A62;
+}
+.delete{
+    -fx-background-color:  #E94B3C;
+}
+.cancel{
+    -fx-background-color:  derive(-fx-theme-base-color,-45%);
+
+}
+
+
+.jfx-check-box,.jfx-check-box:determinate .text{
+
+    -jfx-unchecked-color:derive(-fx-theme-base-color,-15%);
+    -jfx-checked-color:derive(-fx-theme-base-color,-60%);
+    -fx-fill:derive(-fx-theme-base-color,-15%);
+    
+}
+.jfx-check-box:selected:determinate .text{
+    
+    -fx-fill:derive(-fx-theme-base-color,-60%);
+}
+
+.jfx-text-field , .jfx-combo-box ,.jfx-check-box , .jfx-text-area  {
+
+    -jfx-unfocus-color:derive(-fx-theme-base-color,-15%);
+    -jfx-focus-color:derive(-fx-theme-base-color,-30%);
+}
+
+.jfx-text-area,.jfx-text-area .scroll-pane .viewport .content , .jfx-text-area .scroll-pane,.jfx-text-area .scroll-pane .viewport {
+    -fx-background-color : fx-theme-base-color;
+    -fx-border-color: -fx-theme-base-color, -fx-theme-base-color ,-fx-theme-base-color ;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.round{
+    -fx-pref-width : 10px;
+    -fx-pref-height : 10px;
+    -fx-background-radius : 50;
+}

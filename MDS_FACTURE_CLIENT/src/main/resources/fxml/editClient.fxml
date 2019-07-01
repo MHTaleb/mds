@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="875.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mds.facture.client.dashboard.EditClientController">
+    <stylesheets>
+        <URL value="@/styles/theme.css" />
+    </stylesheets>
+   <children>
+      <VBox layoutX="20.0" layoutY="14.0" spacing="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox>
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <JFXTextField fx:id="txtReference" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="Réference " />
+                        <JFXCheckBox fx:id="modeAuto" text="Automatique" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXComboBox fx:id="choiceTypeClient" labelFloat="true" prefHeight="25.0" prefWidth="195.0" promptText="Type Client" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="40.0">
+               <children>
+                  <JFXTextField fx:id="txtNomEntreprise" labelFloat="true" prefHeight="25.0" prefWidth="386.0" promptText="Nom de L'entreprise" HBox.hgrow="ALWAYS" />
+                  <JFXTextField fx:id="txtNumSiret" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="Numéro de Siret" />
+                  <JFXTextField fx:id="txtNumTVA" labelFloat="true" prefHeight="25.0" prefWidth="180.0" promptText="Numéro de TVA" />
+               </children>
+            </HBox>
+            <HBox spacing="30.0">
+               <children>
+                  <JFXTextField fx:id="txtTitre" labelFloat="true" prefHeight="25.0" prefWidth="171.0" promptText="Titre" HBox.hgrow="ALWAYS" />
+                  <JFXTextField fx:id="txtNom" labelFloat="true" prefHeight="25.0" prefWidth="98.0" promptText="Nom" />
+                  <JFXTextField fx:id="txtPrenom" labelFloat="true" prefHeight="25.0" prefWidth="188.0" promptText="Prénom" />
+                  <JFXComboBox fx:id="choiceLangue" labelFloat="true" prefHeight="25.0" prefWidth="159.0" promptText="Langue de facturation" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox layoutX="20.0" layoutY="220.0" prefHeight="310.0" prefWidth="835.0" spacing="20.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="220.0">
+         <children>
+            <VBox prefHeight="306.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="214.0" spacing="10.0">
+                     <children>
+                        <JFXTextField fx:id="txtNumCompte" labelFloat="true" promptText="Numero de compte" HBox.hgrow="ALWAYS" />
+                        <JFXButton onAction="#AddCompte" prefWidth="0.0" text="+" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="add" />
+                              <String fx:value="round" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXListView fx:id="ListComptes" prefHeight="201.0" prefWidth="214.0" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="30.0" prefWidth="214.0">
+                     <children>
+                        <JFXButton ellipsisString="-" onAction="#DelCompte" prefWidth="176.0" text="supprimer">
+                           <styleClass>
+                              <String fx:value="delete" />
+                              <String fx:value="round" />
+                           </styleClass>
+                        </JFXButton>
+                        <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton ellipsisString="/" onAction="#updateCompte" text="modifier">
+                                 <styleClass>
+                                    <String fx:value="update" />
+                                    <String fx:value="round" />
+                                 </styleClass>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="278.0" prefWidth="6.0" />
+            <VBox prefHeight="306.0" spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="214.0" spacing="10.0">
+                     <children>
+                        <JFXTextField fx:id="txtNumTel" labelFloat="true" promptText="Numéro de téléphone" HBox.hgrow="ALWAYS" />
+                        <JFXButton onAction="#addPhone" prefWidth="0.0" text="+" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="add" />
+                              <String fx:value="round" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXListView fx:id="listPhones" prefHeight="201.0" prefWidth="214.0" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="30.0" prefWidth="214.0">
+                     <children>
+                        <JFXButton ellipsisString="-" onAction="#delPhone" prefWidth="176.0" text="supprimer">
+                           <styleClass>
+                              <String fx:value="delete" />
+                              <String fx:value="round" />
+                           </styleClass>
+                        </JFXButton>
+                        <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton ellipsisString="/" onAction="#updatePhone" text="modifier">
+                                 <styleClass>
+                                    <String fx:value="update" />
+                                    <String fx:value="round" />
+                                 </styleClass>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="278.0" prefWidth="6.0" />
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox prefHeight="27.0" prefWidth="214.0" spacing="10.0">
+                     <children>
+                        <JFXTextField fx:id="txtEmail" labelFloat="true" promptText="Email" HBox.hgrow="ALWAYS" />
+                        <JFXButton onAction="#addMail" prefWidth="0.0" text="+" HBox.hgrow="ALWAYS">
+                           <styleClass>
+                              <String fx:value="add" />
+                              <String fx:value="round" />
+                           </styleClass>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <JFXListView fx:id="listMails" prefHeight="201.0" prefWidth="214.0" VBox.vgrow="ALWAYS" />
+                  <HBox prefHeight="30.0" prefWidth="214.0">
+                     <children>
+                        <JFXButton ellipsisString="-" onAction="#delMail" prefWidth="176.0" text="supprimer">
+                           <styleClass>
+                              <String fx:value="round" />
+                              <String fx:value="delete" />
+                           </styleClass>
+                        </JFXButton>
+                        <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton ellipsisString="/" onAction="#updateMail" text="modifier">
+                                 <styleClass>
+                                    <String fx:value="update" />
+                                    <String fx:value="round" />
+                                 </styleClass>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="BOTTOM_RIGHT" layoutX="397.0" layoutY="394.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+         <children>
+            <JFXButton onAction="#comit" styleClass="add" text="Valider" />
+            <JFXButton onAction="#rollback" styleClass="cancel" text="annuler" />
+         </children>
+      </HBox>
+      <HBox layoutX="20.0" layoutY="167.0" spacing="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="160.0">
+         <children>
+            <JFXTextField fx:id="txtAdresse" prefHeight="25.0" prefWidth="316.0" promptText="Adresse" HBox.hgrow="ALWAYS" />
+            <JFXTextField fx:id="txtVille" promptText="Ville" />
+            <JFXTextField fx:id="txtCodePostal" labelFloat="true" promptText="Code postal" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

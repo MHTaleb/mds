@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<SplitPane prefHeight="386.0" prefWidth="691.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mds.facture.client.dashboard.ProcessYesNoRequestFormController">
+   <items>
+      <AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="675.0" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@/styles/theme.css" />
+          </stylesheets>
+         <children>
+            <VBox alignment="TOP_CENTER" layoutX="20.0" layoutY="63.0" spacing="40.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <JFXTextArea fx:id="message" editable="false" labelFloat="true" prefHeight="219.0" prefWidth="541.0" promptText="Message" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur, velit et consectetur tristique, orci metus rutrum ex, a pellentesque ipsum risus vel nibh. Vestibulum ultrices nisl augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse in est dictum augue rutrum gravida. In hac habitasse platea dictumst. Pellentesque tortor ex, gravida at hendrerit quis, posuere nec purus. Praesent semper velit nibh, sed tincidunt massa lobortis non. Pellentesque efficitur volutpat fermentum. Maecenas est neque, aliquet quis mattis in, consequat quis augue. Sed a dolor massa. Phasellus molestie, elit non ultrices tristique, augue felis elementum eros, nec maximus odio purus ut mi. Mauris diam lectus, pulvinar sed augue et, dapibus tincidunt tellus. Cras vitae odio eget sem mollis ullamcorper vel feugiat urna. Aenean rutrum leo ac nibh blandit, vitae fringilla eros suscipit. Praesent at scelerisque nisl." VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="Calibri" size="18.0" />
+                     </font>
+                  </JFXTextArea>
+                  <HBox alignment="TOP_CENTER" spacing="50.0">
+                     <children>
+                        <JFXButton onAction="#process" prefHeight="32.0" prefWidth="115.0" text="Valider" />
+                        <JFXButton onAction="#hide" prefHeight="32.0" prefWidth="115.0" text="Annuler" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="30.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </items>
+</SplitPane>

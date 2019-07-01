@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mds.facture.client.dashboard.ClientController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="800.0" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@/styles/theme.css" />
+          </stylesheets>
+         <children>
+            <TableView fx:id="tableClients" layoutX="49.0" layoutY="70.0" onMouseClicked="#showFullDetail" prefHeight="390.0" prefWidth="770.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="70.0">
+              <columns>
+                <TableColumn fx:id="colmnReference" prefWidth="166.0" text="Réference" />
+                <TableColumn fx:id="columnTitre" prefWidth="160.0" text="Titre" />
+                  <TableColumn fx:id="columnNom" prefWidth="160.0" text="Nom" />
+                  <TableColumn fx:id="columnPrenom" prefWidth="160.0" text="Prénom" />
+                  <TableColumn fx:id="ColumnEmail" prefWidth="160.0" text="Emails" />
+                  <TableColumn fx:id="columnTelephone" prefWidth="160.0" text="Téléphones" />
+                  <TableColumn fx:id="columnComptes" prefWidth="160.0" text="Numeros de comptes" />
+              </columns>
+            </TableView>
+            <HBox layoutX="49.0" layoutY="24.0" spacing="30.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <children>
+                  <JFXTextField fx:id="searchText" onKeyReleased="#doSearch" prefHeight="25.0" prefWidth="259.0" promptText="Recherche" HBox.hgrow="ALWAYS" />
+                  <JFXButton onAction="#showAdd" styleClass="add" text="Ajouter" />
+                  <JFXButton onAction="#showEdit" styleClass="update" text="Modifier" />
+                  <JFXButton onAction="#delete" styleClass="delete" text="Supprimer" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

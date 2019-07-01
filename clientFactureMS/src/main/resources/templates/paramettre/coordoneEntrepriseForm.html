@@ -1,0 +1,115 @@
+<html>
+<head></head>
+<body>
+	<div class="w3-margin">
+		<form class="form" style="background: #eee;" id="coordoneForm" th:action="@{/parametre/entreprise}" method="put" >
+			
+			<a id="close-overlay" class="close-btn"></a>
+			<input class="btn" style="margin-right: 10px; width:100px;" type="submit">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+			<div style="display: block; margin-top: 27px;">
+				<div class="w3-margin">
+					<span style="margin-top: 27px;" class="w3-large"> GENERAL </span>
+				</div>
+				<div class="w3-margin">
+					<label>Nom de l'entreprise
+						<input class="edit" type="text" name="_nom_entreprise" placeholder="Nom de l'entreprise"/>
+					</label>
+					
+					<label>
+						Email de contact
+						<input class="edit" type="email" name="_email_contact" placeholder="email@gmail.com"/>
+					</label>
+					
+					<label>
+						Numéro de SIRET
+						<input class="edit" type="text" name="_numero_siret" placeholder="Ex: 987 321 654 00000"/>
+					</label>
+					
+					<label>
+						Numéro de TVA
+						<input class="edit" type="text" name="_numero_tva" placeholder="Ex: DZ 43 987 321 654"/>
+					</label>
+					
+					<label>
+						Déclaration TVA
+						<select class="w3-select"  name="_declaration_tva">
+							<option value="0">Non Assujetti</option>
+							<option value="1">Monsuel</option>
+							<option value="2">Annuelle</option>
+							<option value="3">Trimestrielle</option>
+						</select>
+					</label>
+					<label>
+						 TVA par default
+						<select class="w3-select" name="_tva_defaut" id="tva_defaut">
+							<option>0%</option>
+							<option>13%</option>
+							<option>17%</option>
+						</select>
+					</label>
+					<label>
+						Pays
+						<input class="edit" type="text" name="_pays" placeholder="Algerie"/>
+					</label>
+				</div>
+				<div class="w3-margin">
+					<span class="w3-large"> ADRESSE </span>
+				</div>
+				<div class="w3-margin">
+					<label>
+						Adresse
+						<div style="display: block; margin-bottom: 10px;margin-top: 5px;">
+							<input style="margin-bottom: 10px;" class="edit" type="text" name="_adresse1" placeholder="Ex: VILLA 47 PANORAMA HUSEIN-DEY"/>
+							<input class="edit" type="text" name="_adresse2" placeholder="Ex: El Mouradia 16040"/>
+						</div>
+						
+					</label>
+					<label>
+						Code Postal
+						<input class="edit" type="text" name="_code_postal" placeholder="Ex: 16001"/>
+					</label>
+					<label>
+						Ville
+						<input class="edit" type="text" name="_ville" placeholder="Ex: Alger"/>
+					</label>
+					<label>
+						Site Web
+						<input class="edit" type="text" name="_site_web" placeholder="Ex: www.great-company.dz"/>
+					</label>
+					<span class="w3-large"> INTERLOCUTEUR </span>
+					<label>
+						Prénom
+						<input class="edit" type="text" name="_prenom" placeholder="Ex: Mohammed Mounir"/>
+					</label>
+					<label>
+						Nom de famille
+						<input class="edit" type="text" name="_nom" placeholder="Ex: Bejaoui"/>
+					</label>
+					<label>
+						E-mail
+						<input class="edit" type="email" name="_email" placeholder="Ex: mm.bejaoui@gmail.com"/>
+					</label>
+					<label>
+						Portable
+						<input class="edit" type="text" name="_portable" placeholder="Ex: 0777 123 486"/>
+					</label>
+					<label>
+						Téléphone
+						<input class="edit" type="text" name="_telephone" placeholder="Ex: 021 45 22 39"/>
+					</label>
+				</div>
+				<div class="w3-margin">
+					<span class="w3-large"> LOGO DE L'ENTREPRISE</span>
+				</div>
+				<div class="w3-margin">
+					<label>
+						Logo de l'entreprise
+						<input class="edit" type="file" name="_logo"/>
+					</label>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

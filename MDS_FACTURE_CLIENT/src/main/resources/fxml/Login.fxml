@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mds.facture.client.login.LoginController">
+   <children>
+      <AnchorPane id="AnchorPane" maxHeight="450.0" maxWidth="800.0" minHeight="450.0" minWidth="800.0" prefHeight="450.0" prefWidth="800.0" styleClass="mainFxmlClass">
+          <stylesheets>
+              <URL value="@/styles/theme.css" />
+          </stylesheets>
+         <children>
+            <JFXButton buttonType="RAISED" layoutX="567.0" layoutY="340.0" onAction="#reset" prefHeight="40.0" prefWidth="143.0" ripplerFill="#9a2c2c" text="Annuler">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="347.0" layoutY="340.0" onAction="#doConnect" prefHeight="40.0" prefWidth="143.0" ripplerFill="#9a2c2c" text="Connecter">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </JFXButton>
+            <SVGPath fx:id="logo" content="M428.874,82.099l-64.322-64.354c-23.689-23.66-62.104-23.66-85.795,0l-42.883,42.914   c-23.692,23.662-23.692,62.072,0,85.765l21.438,21.443L21.43,403.75l21.441,21.436l42.881,42.886l19.163-19.163l-21.443-21.44   l19.191-19.187l21.443,21.44l19.191-19.195l-42.884-42.877l178.343-178.345l21.441,21.443c23.689,23.692,62.1,23.692,85.79,0   l42.886-42.886C452.563,144.171,452.563,105.761,428.874,82.099z M364.551,189.304c-11.845,11.82-31.063,11.848-42.918,0   l-64.322-64.319c-11.812-11.85-11.812-31.097,0-42.886l42.887-42.883c11.812-11.845,31.063-11.845,42.881,0l64.35,64.326   c11.821,11.817,11.821,31.036,0,42.881L364.551,189.304z" fill="TEAL" fillRule="EVEN_ODD" layoutX="-45.0" layoutY="-26.0" scaleX="0.4" scaleY="0.35" scaleZ="0.5" stroke="#725656" />
+            <JFXTextField fx:id="username" labelFloat="true" layoutX="364.0" layoutY="170.0" prefHeight="25.0" prefWidth="323.0" promptText="UTILISATEUR" text="administrateur" unFocusColor="TEAL" />
+            <JFXPasswordField fx:id="password" labelFloat="true" layoutX="364.0" layoutY="241.0" prefHeight="25.0" prefWidth="323.0" promptText="MOT DE PASSE" text="administrateur" unFocusColor="TEAL" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

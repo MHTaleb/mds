@@ -1,0 +1,211 @@
+const clientTabDetail= (client)=>`
+<div style="padding: 20px 40px;">	
+<h1>Fiche Client </h1>
+<p style="padding-left: 30px;"><strong>R&eacute;ference&nbsp; : </strong>${client.codeExterne}</p>
+<p style="padding-left: 30px;"><strong>Identifiant :&nbsp;</strong>${client.identifiant}</p>
+<p style="padding-left: 30px;"><strong>Type :&nbsp;</strong>${client.clientType==0?"Particulier":"Entreprise"}</p>
+<p style="padding-left: 30px;"><strong>Etat :&nbsp;</strong>${client.clientEtat==0?"Gelé":"Active"}</p>
+<p style="padding-left: 30px;"><strong>Nom Compl&eacute;t :&nbsp;</strong>${client.contacts[0]!= null?client.contacts[0].nom+' '+client.contacts[0].prenom:""}</p>
+<p style="padding-left: 30px;"><strong>T&eacute;l&eacute;phone&nbsp; :&nbsp;</strong>${client.contacts[0]!=null?client.contacts[0].telephonePortable:""}</p>
+<p style="padding-left: 30px;"><strong>Fixe :&nbsp;</strong>${client.clientPhone}</p>
+<p style="padding-left: 30px;"><strong>Adresse :&nbsp;</strong>${client.adresses[0]!=null?client.adresses[0].adress:""}</p>
+<p style="padding-left: 30px;"><strong>Ville :&nbsp;</strong>${client.adresses[0]!=null?client.adresses[0].ville:""}</p>
+<button onclick="updateClient()" class="btn" style="width:110px;">modifier</button> <button id="delete-client" class="btn" style="width:110px;">suprimmer</button>
+</div>
+`;
+
+
+const RefCliElement = ({client,index})=>`
+<div id="cl${index}" onclick="setSelectedClient('${client.codeExterne}')" class="row">
+<div class="column right" style="width: 50px;">${client.codeExterne}</div>
+<div class="column left" style="width: 50%;">${client.identifiant}</div>
+<div class="column left" style="width: 50%;">${client.contacts[0]!= null?client.contacts[0].nom+' '+client.contacts[0].prenom:""}</div>
+<div class="column left dynamic" style="width: 180px; display: none;">${client.adresses[0]!=null?client.adresses[0].adress:""}</div>
+<div class="column left dynamic" style="width: 180px; display: none;">${client.adresses[0]!=null?client.adresses[0].ville:""}</div>
+<div class="column left dynamic" style="width: 120px; display: none;">${client.contacts[0]!=null?client.contacts[0].telephonePortable:""}</div>
+<div class="column left dynamic" style="width: 120px; display: none;">${client.clientPhone}</div>
+<div class="column left" style="width: 50%;">${client.email}</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>`
+;
+
+function populateForm($form, data)
+{
+    console.log("PopulateForm, All form data: " + JSON.stringify(data));
+
+    $.each(data, function(key, value)   // all json fields ordered by name
+    {
+        console.log("Data Element: " + key + " value: " + value );
+        var $ctrls = $form.find('[name='+key+']');  //all form elements for a name. Multiple checkboxes can have the same name, but different values
+
+        console.log("Number found elements: " + $ctrls.length );
+
+        if(value !== null && typeof value === 'object' ) {
+            populateForm($form, value);
+        }else{
+        
+        if ($ctrls.is('select')) //special form types
+        {
+            $('option', $ctrls).each(function() {
+                if (this.value == value)
+                    this.selected = true;
+            });
+        } 
+        else if ($ctrls.is('textarea')) 
+        {
+            $ctrls.val(value);
+        } 
+        else 
+        {
+            switch($ctrls.attr("type"))   //input type
+            {
+                case "text":
+                case "hidden":
+                case "email":
+                case "tel":
+                    $ctrls.val(value);   
+                    break;
+                case "radio":
+                    if ($ctrls.length >= 1) 
+                    {   
+                        console.log("Radio $ctrls.length: " + $ctrls.length + " value: " + value);
+                        $.each($ctrls,function(index)
+                        {  // every individual element
+                            var elemValue = $(this).attr("value");
+                            if(elemValue==value){
+                                $(this).prop('checked', true);
+                            }
+                            else{
+                                $(this).prop('checked', false);
+                            }
+                        });
+                    }
+                    break;
+                case "checkbox":
+                    if ($ctrls.length > 1) 
+                    {   
+                        console.log("CheckBox $ctrls.length: " + $ctrls + " value.length: " + value);
+                        $.each($ctrls,function(index) // every individual element
+                        {  
+                            var elemValue = $(this).attr("value");
+                            var elemValueInData = undefined;
+                            var singleVal;
+                            for (var i=0; i<value.length; i++){
+                                singleVal = value[i];
+                                console.log("singleVal : " + singleVal + " value[i][1]" +  value[i][1] );
+                                if (singleVal === elemValue){elemValueInData = singleVal};
+                            }
+
+                            if(elemValueInData){
+                                console.log("TRUE elemValue: " + elemValue + " value: " + value);
+                                $(this).prop('checked', true);
+                                //$(this).prop('value', true);
+                            }
+                            else{
+                                console.log("FALSE elemValue: " + elemValue + " value: " + value);
+                                $(this).prop('checked', false);
+                                //$(this).prop('value', false);
+                            }
+                        });
+                    }
+                    else if($ctrls.length == 1)
+                    {
+                        $ctrl = $ctrls;
+                        if(value) {$ctrl.prop('checked', true);}
+                        else {$ctrl.prop('checked', false);}
+
+                    }
+                    break;
+            }  //switch input type
+        }}
+    }) // all json fields
+}  // populate form
+
+function displayList(){
+	console.log($('#search-client').val().toLowerCase());
+	var as=$(clientsData).filter(function (i,n){return (
+			n.email.toLowerCase().indexOf($('#search-client').val().toLowerCase()) >= 0 || 
+			n.contacts[0].nom.toLowerCase().indexOf($('#search-client').val().toLowerCase()) >= 0 ||
+			n.contacts[0].prenom.toLowerCase().indexOf($('#search-client').val().toLowerCase()) >= 0 || 
+			n.adresses[0].ville.toLowerCase().indexOf($('#search-client').val().toLowerCase()) >= 0 || 
+			n.contacts[0].telephonePortable.toLowerCase().indexOf($('#search-client').val().toLowerCase()) >= 0)});
+	var html=' ';
+	console.log(as.length);
+	for(var i=0; i<as.length ; i++){
+		html+=[{client : as[i] , index : i}].map(RefCliElement).join('');	
+	}
+	$('#clientList').html(html);
+	console.log(html);
+	
+}
+
+var clientsData = [{"codeInterne":45,"clientName":"TalcorpDZ","clientPhone":"+213778217469","codeExterne":"CLI201801","email":"talcorpdz@gmail.com","clientType":0,"clientEtat":1,"identifiant":"TalcorpDZ","contacts":[{"nom":"Taleb","prenom":"Mohammed Housseyn","telephonePortable":"04330256699","email":null}],"adresses":[{"adress":"Batiments des enseignants Mohammed Khemisti","ville":"Maghnia"}]},{"codeInterne":64,"clientName":"lkjhgf","clientPhone":"+213778217469","codeExterne":"dfghjk","email":"talcorpdz@gmail.com","clientType":1,"clientEtat":1,"identifiant":"lkjhgf","contacts":[{"nom":"Taleb","prenom":"Mohammed","telephonePortable":"02354649","email":"talcorpdz@gmail.com"}],"adresses":[{"adress":"Batiments des enseignants Mohammed Khemist","ville":"Maghnia"}]},{"codeInterne":51,"clientName":"KJBMKUGPHMSDF","clientPhone":"13216465432","codeExterne":"GIUYDSKFJG","email":"JHSDF@KGDSFHFK.COM","clientType":1,"clientEtat":1,"identifiant":"KJBMKUGPHMSDF","contacts":[{"nom":"LKSDFS","prenom":"KJHSDF","telephonePortable":"12313546516","email":"JHSDF@KGDSFHFK.COM"}],"adresses":[{"adress":"FKUYFLSDFSFJHFOY","ville":"KJHGKJHVLUY"}]},{"codeInterne":50,"clientName":"KJBMKUGPHM","clientPhone":"13216465432","codeExterne":"GIUYG.","email":"JHGJ@KGHFK.COM","clientType":1,"clientEtat":1,"identifiant":"KJBMKUGPHM","contacts":[{"nom":"LKJ?NBKT","prenom":"KJHV?N","telephonePortable":"12313546516","email":"JHGJ@KGHFK.COM"}],"adresses":[{"adress":"FKUYFLJ.JHFOY","ville":"KJHGKJHVLUY"}]},{"codeInterne":53,"clientName":"jdhgfjkhkg","clientPhone":"654654321","codeExterne":"gkdjsgfkjhg","email":"jhgdfk@djf.com","clientType":1,"clientEtat":1,"identifiant":"jdhgfjkhkg","contacts":[{"nom":"kjdhgfieup","prenom":"jhdkfhb","telephonePortable":"3213546454","email":"jhgdfk@djf.com"}],"adresses":[{"adress":"dhfgkhfg","ville":"hjgdsfk"}]},{"codeInterne":59,"clientName":"lkjhldkjfh","clientPhone":"6543215","codeExterne":"iuefhlkjh","email":"jdsl@dkf.com","clientType":1,"clientEtat":1,"identifiant":"lkjhldkjfh","contacts":[{"nom":"\tflkjdshfkjh","prenom":"lkjdhf","telephonePortable":"3216548","email":"jdsl@dkf.com"}],"adresses":[{"adress":"dskfhkjhg","ville":"ljdfjb"}]},{"codeInterne":60,"clientName":"kjgkdsjgfjkhgk","clientPhone":"026546498","codeExterne":"kjdskfjg","email":"jdshgf@gm.com","clientType":1,"clientEtat":1,"identifiant":"kjgkdsjgfjkhgk","contacts":[{"nom":"uuuuu","prenom":"uuuuu","telephonePortable":"35465465","email":"jdshgf@gm.com"}],"adresses":[{"adress":"test","ville":"vill"}]},{"codeInterne":46,"clientName":"IDE001","clientPhone":"05 55 55 55 55","codeExterne":"REF001","email":"mail@gmail.com","clientType":0,"clientEtat":0,"identifiant":"IDE001","contacts":[{"nom":"NOM","prenom":"PRENOM","telephonePortable":"07 77 77 77 77","email":"mail@gmail.com"}],"adresses":[{"adress":"adresse limit 50","ville":"ville"}]},{"codeInterne":47,"clientName":"ID002","clientPhone":"0565486415","codeExterne":"REF002","email":"test@test.com","clientType":0,"clientEtat":1,"identifiant":"ID002","contacts":[{"nom":"azerty","prenom":"azerty","telephonePortable":"0321546213","email":"test@test.com"}],"adresses":[{"adress":"ad","ville":"vil"}]},{"codeInterne":48,"clientName":"ID003","clientPhone":"05 5555555","codeExterne":"REF003","email":"EMAIL@Mail.com","clientType":1,"clientEtat":1,"identifiant":"ID003","contacts":[{"nom":"NOM 033","prenom":"PRENOM 0333","telephonePortable":"07 7777777","email":"EMAIL@Mail.com"}],"adresses":[{"adress":"ADresse 3","ville":"ville 3"}]},{"codeInterne":49,"clientName":"ID08","clientPhone":"0564654865","codeExterne":"REF08","email":"EMAIL@MAIL.COM","clientType":1,"clientEtat":1,"identifiant":"ID08","contacts":[{"nom":"NOM08","prenom":"PRENOM08","telephonePortable":"0765984353","email":"EMAIL@MAIL.COM"}],"adresses":[{"adress":"ADREE","ville":"VILLEE"}]},{"codeInterne":52,"clientName":"IDENTIFIA007","clientPhone":"0777","codeExterne":"REF89","email":"JB@007.com","clientType":1,"clientEtat":1,"identifiant":"IDENTIFIA007","contacts":[{"nom":"JAmes","prenom":"Bond","telephonePortable":"07777","email":"JB@007.com"}],"adresses":[{"adress":"not defined","ville":"unknown"}]},{"codeInterne":67,"clientName":"sdfsdfsdf","clientPhone":"0778217469","codeExterne":"sdsdf","email":"talcorpdz@gmail.com","clientType":1,"clientEtat":1,"identifiant":"sdfsdfsdf","contacts":[{"nom":"housseyn","prenom":"Taleb","telephonePortable":"+213778217469","email":"talcorpdz@gmail.com"}],"adresses":[{"adress":"Batiments des enseignants","ville":"Maghnia"}]},{"codeInterne":44,"clientName":"sqdsqd","clientPhone":"+213778217469","codeExterne":"sdsqdqs","email":"talcorpdz@gmail.com","clientType":1,"clientEtat":1,"identifiant":"sqdsqd","contacts":[{"nom":"Taleb","prenom":"Mohammed","telephonePortable":"+213778217469","email":null}],"adresses":[{"adress":"Batiments des enseignants ","ville":"Maghnia"}]},{"codeInterne":68,"clientName":"cytughb","clientPhone":"+213778217469","codeExterne":"xcghbjnokl","email":"talcorpdz@gmail.com","clientType":1,"clientEtat":1,"identifiant":"cytughb","contacts":[{"nom":"Taleb","prenom":"Mohammed","telephonePortable":"+213778217469","email":"talcorpdz@gmail.com"}],"adresses":[{"adress":"Batiments des Khemisti Maghnia","ville":"Maghnia"}]},{"codeInterne":63,"clientName":"yiouhpkjl","clientPhone":"026546498","codeExterne":"ytiusdof","email":"jdshgf@gm.com","clientType":1,"clientEtat":1,"identifiant":"yiouhpkjl","contacts":[{"nom":"uuuuu","prenom":"uuuuu","telephonePortable":"35465465","email":"jdshgf@gm.com"}],"adresses":[{"adress":"test","ville":"vill"}]}];
+
+var selectedClient ;
+
+function updateClient() {
+	$("#addClient").trigger("reset");
+	console.log("clicked");
+	$('#overlay').css("display", "block");
+	$('#addClient').css("display", "block");
+	var form = $('#addClient');
+	populateForm(form, selectedClient);
+	$("#addClient").prop("method", "put");
+}
+
+
+function setSelectedClient(codeExterne){
+	selectedClient = codeExterne;
+	var index ;
+	for(index = 0 ; codeExterne != clientsData[index].codeExterne; index++);
+	var html=[clientsData[index]].map(clientTabDetail).join('');
+	
+	
+	$('#container-func1-tab0').html(html);
+	selectedClient = clientsData[index];
+	console.log(selectedClient);
+}
+
+$(document).ready(function loadAdditionalData() {
+	
+	$('#search-client').on('keyup', function(ev){
+		displayList();
+	});
+	
+	
+
+	$('#menu1-func0').on('click', function () {
+		$('#overlay').css("display", "block");
+		$('#addClient').css("display", "block");
+		$("#addClient").trigger("reset");
+		$("#addClient").prop("method", "post");
+	});
+	
+	
+	
+	var form = new FormData();
+	var settings = {
+		"async" : true,
+		"crossDomain" : true,
+		"url" : "http://"+document.location.host+"/facturation/client/api",
+		"method" : "GET",
+		"headers" : {
+			"cache-control" : "no-cache",
+			 "JSESSIONID" : "9787B1FEC10D1D20371C74037D4E398F"
+		},
+		"processData" : false,
+		"contentType" : false,
+		"mimeType" : "multipart/form-data",
+		"data" : form
+	}
+
+	$.ajax(settings).done(function(response) {
+		console.log(response);
+		var datas = JSON.parse(response);
+		clientsData = datas;
+		
+		displayList();
+		
+	});
+
+});

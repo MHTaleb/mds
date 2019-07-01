@@ -1,0 +1,4 @@
+process-classes org.codehaus.mojo:exec-maven-plugin:1.2.1:exec
+
+exec.args=-classpath %classpath demo.ZuulApplication
+exec.executable=C:\Program Files\Java\jdk1.8.0_131\bin\java.exe

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:9999/facturation/ -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Facturation - MDS</title>
+	<script src="./Facturation - MDS_files/jquery.min.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/jquery.cookie.min.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/main.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/facturation.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/menus.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/grid.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/tab.js.téléchargement"></script>
+	<script src="./Facturation - MDS_files/notify.js.téléchargement"></script>
+	<script onloadstart="loadAdditionalData()" src="./Facturation - MDS_files/facturationLoader.js.téléchargement"></script>
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/main.css">
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/facturation.css">
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/grid.css">
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/tab.css">
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/notify.css">
+	<link rel="stylesheet" type="text/css" href="./Facturation - MDS_files/menus.css">	
+</head>
+
+	
+
+	<body>	
+	
+<div id="overlay" class="overlay">
+	<div style="margin-top: 56px; padding: 40px 25%; width: 100%; height: calc(100% - 56px); box-sizing: border-box; background: #f6f6f6; overflow: auto;">
+		<form style="width: 100%; height: 100%;" target="_self" method="post" id="addClient" action="http://localhost:9999/facturation/client">
+			<input class="btn" style="margin-right: 10px; width:100px;" type="submit">
+			<input class="btn" style="margin-right: 10px; width:100px;" type="reset">
+			<a id="close-overlay" class="close-btn"></a>
+			<input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c">
+			<input type="hidden" name="codeInterne" id="codeInterne" value="">
+			<input class="edit" type="text" required="" placeholder="Réference" name="codeExterne" id="codeExterne" value="">
+			<input class="edit" type="text" required="" placeholder="Identifiant" name="identifiant" id="identifiant" value="">
+			<input class="edit" type="text" placeholder="Nom" name="nom" id="nom" value="">
+			<input class="edit" type="text" placeholder="Prénom" name="prenom" id="prenom" value="">
+			<input class="edit" type="email" required="" placeholder="Email" name="email" id="email" value="">
+			<input class="edit" type="text" placeholder="Adresse" name="adress" id="adress" value="">
+			<input class="edit" type="text" placeholder="Ville" name="ville" id="ville" value="">
+			<input class="edit" type="tel" placeholder="Telephone Fixe" name="clientPhone" id="clientPhone" value="">
+			<input class="edit" type="tel" placeholder="Télephone Portable" name="telephonePortable" id="telephonePortable" value="">
+			<input type="radio" placeholder="Type Client" value="1" name="clientType" id="clientType1">Entreprise
+			<input type="radio" placeholder="Type Client" value="0" name="clientType" id="clientType2">Particulier
+			<input type="radio" placeholder="Etat Client" value="1" name="clientEtat" id="clientEtat1">Active
+			<input type="radio" placeholder="Etat Client" value="0" name="clientEtat" id="clientEtat2">Gelé
+		<input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c"></form>
+	</div>
+</div>	
+
+<div style="height: 100%;">
+	<div id="header" class="header">
+		<div style="width: 53px; margin: 11px 30px 0; float: left;">
+			<svg viewBox="0 0 300 213" preserveAspectRatio="xMidYMid meet" focusable="false" style="pointer-events: none; display: block;">
+<g>
+	<g>
+		<path fill="#a0a0a0" d="M183.5,137.5V37.9c0-5.9-3.1-9-8.8-9h-20.1v117.4h20.1C180.4,146.3,183.5,143.4,183.5,137.5z"></path>
+		<path fill="#a0a0a0" d="M91.5,0h33.3v175.2H95.7V72.3h-1.5l-21.7,99c-0.7,2.6-2.2,3.9-4.8,3.9H56.9c-2.6,0-4.2-1.3-4.8-3.9l-21.7-99    h-1.5v102.9H0V0h33.3c2.6,0,4.2,1.3,4.8,3.9L62.4,113L86.7,3.9C87.4,1.3,88.9,0,91.5,0z"></path>
+		<path fill="#a0a0a0" d="M296.5,58.2c2.4,0,3.5-1.3,3.5-3.5V28c0-15.5-12.5-28-28-28H258h-14.1h-63.1c19.9,0,30.8,10.5,31.5,29.8h0.1    l0.1,0c0,0.6-0.1,1.2-0.1,1.8v51.7c0,4.2,2,6.8,5.9,8.1l51.9,17.1v29.1c0,5.9-3.1,8.8-8.8,8.8h-10.5c-5.5,0-8.8-2.8-8.8-8.8v-20.4    h-26.3c-2.2,0-3.5,1.1-3.5,3.5v23c0,0.6,0,1.1,0.1,1.7l-0.1,0h-0.1c-0.6,19.5-11.4,29.9-31.4,29.9h63c0,0,0,0,0,0h28    c15.5,0,28-12.5,28-28V93.1c0-4.2-2-6.6-5.7-8.1l-52.1-17.1V37.7c0-5.7,3.3-8.8,8.8-8.8h10.5c5.9,0,8.8,3.1,8.8,8.8v20.6H296.5z"></path>
+	</g>
+	<g>
+		<path fill="#a0a0a0" d="M13.3,191.4c0,0.2,0,0.3,0,0.5c0,0.1,0,0.2-0.1,0.3c0,0.1-0.1,0.1-0.2,0.2c-0.1,0-0.1,0.1-0.2,0.1h-5v15.4    c0,0.1,0,0.1-0.1,0.2c0,0.1-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.4,0.1c-0.2,0-0.3,0-0.6,0c-0.2,0-0.4,0-0.6,0    c-0.2,0-0.3-0.1-0.4-0.1c-0.1,0-0.2-0.1-0.2-0.1c0-0.1-0.1-0.1-0.1-0.2v-15.4h-5c-0.1,0-0.1,0-0.2-0.1c-0.1,0-0.1-0.1-0.1-0.2    c0-0.1-0.1-0.2-0.1-0.3c0-0.1,0-0.3,0-0.5s0-0.3,0-0.5c0-0.1,0.1-0.2,0.1-0.3c0-0.1,0.1-0.1,0.1-0.2c0.1,0,0.1-0.1,0.2-0.1h12.3    c0.1,0,0.1,0,0.2,0.1c0.1,0,0.1,0.1,0.2,0.2c0,0.1,0.1,0.2,0.1,0.3C13.2,191.1,13.3,191.2,13.3,191.4z"></path>
+		<path fill="#a0a0a0" d="M37.6,201.1c0,0.4-0.1,0.6-0.3,0.8c-0.2,0.2-0.4,0.2-0.6,0.2h-8.1c0,0.7,0.1,1.3,0.2,1.8s0.4,1,0.7,1.4    c0.3,0.4,0.7,0.7,1.3,0.9s1.1,0.3,1.9,0.3c0.6,0,1.1,0,1.6-0.1c0.5-0.1,0.9-0.2,1.2-0.3c0.3-0.1,0.6-0.2,0.8-0.3    c0.2-0.1,0.4-0.1,0.5-0.1c0.1,0,0.1,0,0.2,0c0.1,0,0.1,0.1,0.1,0.1s0,0.2,0.1,0.3c0,0.1,0,0.3,0,0.4c0,0.1,0,0.2,0,0.3    c0,0.1,0,0.2,0,0.2c0,0.1,0,0.1-0.1,0.2s-0.1,0.1-0.1,0.2c-0.1,0-0.2,0.1-0.4,0.2c-0.2,0.1-0.6,0.2-1,0.3    c-0.4,0.1-0.8,0.2-1.4,0.3c-0.5,0.1-1.1,0.1-1.7,0.1c-1,0-1.9-0.1-2.7-0.4c-0.8-0.3-1.4-0.7-1.9-1.3c-0.5-0.6-0.9-1.3-1.2-2.1    c-0.3-0.8-0.4-1.8-0.4-2.9c0-1.1,0.1-2,0.4-2.9c0.3-0.8,0.7-1.6,1.2-2.2c0.5-0.6,1.1-1,1.9-1.4c0.7-0.3,1.5-0.5,2.5-0.5    c1,0,1.8,0.2,2.5,0.5c0.7,0.3,1.2,0.7,1.7,1.3c0.4,0.5,0.8,1.1,1,1.8c0.2,0.7,0.3,1.5,0.3,2.3V201.1z M35.3,200.4    c0-1.2-0.2-2.1-0.8-2.8c-0.6-0.7-1.4-1-2.5-1c-0.6,0-1.1,0.1-1.5,0.3c-0.4,0.2-0.8,0.5-1.1,0.8c-0.3,0.3-0.5,0.7-0.7,1.2    c-0.2,0.5-0.2,0.9-0.3,1.4H35.3z"></path>
+		<path fill="#a0a0a0" d="M63.9,205.9c0,0.2,0,0.3,0,0.4c0,0.1,0,0.2,0,0.3c0,0.1-0.1,0.1-0.1,0.2c0,0.1-0.1,0.1-0.2,0.3    c-0.1,0.1-0.3,0.3-0.6,0.4c-0.3,0.2-0.6,0.3-0.9,0.5c-0.3,0.1-0.7,0.2-1.1,0.3c-0.4,0.1-0.8,0.1-1.2,0.1c-0.9,0-1.7-0.1-2.4-0.4    c-0.7-0.3-1.3-0.7-1.7-1.3c-0.5-0.6-0.8-1.3-1.1-2.1c-0.2-0.8-0.4-1.8-0.4-2.8c0-1.2,0.1-2.3,0.4-3.1s0.7-1.6,1.2-2.1    c0.5-0.6,1.1-1,1.8-1.2c0.7-0.3,1.5-0.4,2.3-0.4c0.4,0,0.8,0,1.1,0.1c0.4,0.1,0.7,0.2,1,0.3c0.3,0.1,0.6,0.3,0.8,0.4    c0.2,0.2,0.4,0.3,0.5,0.4c0.1,0.1,0.2,0.2,0.2,0.3c0,0.1,0.1,0.1,0.1,0.2c0,0.1,0,0.2,0.1,0.3c0,0.1,0,0.2,0,0.4    c0,0.4,0,0.6-0.1,0.7c-0.1,0.1-0.2,0.2-0.3,0.2c-0.1,0-0.3-0.1-0.5-0.2c-0.2-0.2-0.4-0.3-0.7-0.5c-0.3-0.2-0.6-0.4-1-0.5    c-0.4-0.2-0.8-0.2-1.4-0.2c-1.1,0-1.9,0.4-2.5,1.3c-0.6,0.8-0.9,2-0.9,3.6c0,0.8,0.1,1.5,0.2,2.1c0.2,0.6,0.4,1.1,0.7,1.5    c0.3,0.4,0.6,0.7,1.1,0.9c0.4,0.2,0.9,0.3,1.5,0.3c0.5,0,1-0.1,1.4-0.2c0.4-0.2,0.7-0.3,1-0.5c0.3-0.2,0.5-0.4,0.7-0.5    c0.2-0.2,0.3-0.2,0.5-0.2c0.1,0,0.1,0,0.2,0.1c0,0,0.1,0.1,0.1,0.2c0,0.1,0.1,0.2,0.1,0.3C63.9,205.5,63.9,205.7,63.9,205.9z"></path>
+		<path fill="#a0a0a0" d="M91.6,207.8c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0-0.3,0-0.5,0    c-0.2,0-0.4,0-0.6,0s-0.3,0-0.3-0.1c-0.1,0-0.1-0.1-0.2-0.1c0-0.1-0.1-0.1-0.1-0.2v-7.2c0-0.7-0.1-1.3-0.2-1.7    c-0.1-0.4-0.3-0.8-0.5-1.1c-0.2-0.3-0.5-0.5-0.8-0.7c-0.3-0.2-0.7-0.2-1.2-0.2c-0.6,0-1.1,0.2-1.7,0.6c-0.6,0.4-1.2,1-1.8,1.8v8.6    c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1s-0.3,0-0.6,0c-0.2,0-0.4,0-0.5,0c-0.1,0-0.3,0-0.4-0.1    c-0.1,0-0.1-0.1-0.2-0.1c0-0.1,0-0.1,0-0.2v-18.3c0-0.1,0-0.1,0-0.2s0.1-0.1,0.2-0.1c0.1,0,0.2-0.1,0.4-0.1c0.1,0,0.3,0,0.5,0    c0.2,0,0.4,0,0.6,0c0.1,0,0.3,0,0.3,0.1c0.1,0,0.1,0.1,0.2,0.1s0.1,0.1,0.1,0.2v7.4c0.6-0.7,1.3-1.2,2-1.5c0.7-0.3,1.3-0.5,2-0.5    c0.8,0,1.5,0.1,2.1,0.4c0.6,0.3,1,0.7,1.4,1.1c0.3,0.5,0.6,1,0.7,1.6s0.2,1.4,0.2,2.3V207.8z"></path>
+		<path fill="#a0a0a0" d="M120.3,207.8c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0-0.3,0-0.5,0    c-0.2,0-0.4,0-0.6,0c-0.1,0-0.3,0-0.3-0.1c-0.1,0-0.1-0.1-0.2-0.1c0-0.1-0.1-0.1-0.1-0.2v-7.2c0-0.7-0.1-1.3-0.2-1.7    c-0.1-0.4-0.3-0.8-0.5-1.1c-0.2-0.3-0.5-0.5-0.8-0.7c-0.3-0.2-0.7-0.2-1.2-0.2c-0.6,0-1.1,0.2-1.7,0.6c-0.6,0.4-1.2,1-1.8,1.8v8.6    c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1c-0.1,0-0.3,0-0.6,0c-0.2,0-0.4,0-0.5,0c-0.1,0-0.3,0-0.4-0.1    c-0.1,0-0.1-0.1-0.2-0.1c0-0.1,0-0.1,0-0.2v-12.3c0-0.1,0-0.1,0-0.2c0-0.1,0.1-0.1,0.2-0.1c0.1,0,0.2-0.1,0.3-0.1    c0.1,0,0.3,0,0.5,0c0.2,0,0.4,0,0.5,0c0.1,0,0.2,0,0.3,0.1c0.1,0,0.1,0.1,0.2,0.1c0,0,0,0.1,0,0.2v1.6c0.7-0.8,1.4-1.3,2.1-1.7    c0.7-0.4,1.4-0.5,2.1-0.5c0.8,0,1.5,0.1,2.1,0.4c0.6,0.3,1,0.7,1.4,1.1c0.3,0.5,0.6,1,0.7,1.6s0.2,1.4,0.2,2.3V207.8z"></path>
+		<path fill="#a0a0a0" d="M150,201.5c0,1-0.1,1.9-0.4,2.8c-0.3,0.8-0.7,1.6-1.2,2.2c-0.5,0.6-1.2,1.1-2,1.4c-0.8,0.3-1.7,0.5-2.7,0.5    c-1,0-1.9-0.2-2.6-0.5c-0.8-0.3-1.4-0.7-1.9-1.3c-0.5-0.6-0.9-1.3-1.1-2.1c-0.2-0.8-0.4-1.8-0.4-2.8c0-1,0.1-1.9,0.4-2.8    c0.3-0.8,0.7-1.6,1.2-2.2c0.5-0.6,1.2-1.1,2-1.4c0.8-0.3,1.7-0.5,2.8-0.5c1,0,1.9,0.2,2.6,0.5c0.8,0.3,1.4,0.7,1.9,1.3    c0.5,0.6,0.9,1.3,1.1,2.1C149.8,199.5,150,200.4,150,201.5z M147.6,201.6c0-0.7-0.1-1.3-0.2-1.9c-0.1-0.6-0.3-1.1-0.6-1.6    c-0.3-0.4-0.7-0.8-1.2-1.1c-0.5-0.3-1.1-0.4-1.8-0.4c-0.7,0-1.3,0.1-1.7,0.4c-0.5,0.2-0.9,0.6-1.2,1c-0.3,0.4-0.5,0.9-0.7,1.5    c-0.2,0.6-0.2,1.2-0.2,1.9c0,0.7,0.1,1.3,0.2,1.9c0.1,0.6,0.3,1.1,0.6,1.6c0.3,0.4,0.7,0.8,1.2,1.1c0.5,0.3,1.1,0.4,1.8,0.4    c0.7,0,1.2-0.1,1.7-0.4c0.5-0.2,0.9-0.6,1.2-1c0.3-0.4,0.5-0.9,0.7-1.5C147.5,203,147.6,202.3,147.6,201.6z"></path>
+		<path fill="#a0a0a0" d="M169.6,207.8c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1s-0.3,0-0.6,0    c-0.2,0-0.4,0-0.5,0c-0.1,0-0.3,0-0.4-0.1c-0.1,0-0.1-0.1-0.2-0.1c0-0.1,0-0.1,0-0.2v-18.3c0-0.1,0-0.1,0-0.2    c0-0.1,0.1-0.1,0.2-0.1c0.1,0,0.2-0.1,0.4-0.1c0.1,0,0.3,0,0.5,0c0.2,0,0.4,0,0.6,0c0.1,0,0.3,0,0.3,0.1c0.1,0,0.1,0.1,0.2,0.1    s0.1,0.1,0.1,0.2V207.8z"></path>
+		<path fill="#a0a0a0" d="M199.2,201.5c0,1-0.1,1.9-0.4,2.8s-0.7,1.6-1.2,2.2c-0.5,0.6-1.2,1.1-2,1.4c-0.8,0.3-1.7,0.5-2.7,0.5    c-1,0-1.9-0.2-2.6-0.5c-0.8-0.3-1.4-0.7-1.9-1.3c-0.5-0.6-0.9-1.3-1.1-2.1c-0.2-0.8-0.4-1.8-0.4-2.8c0-1,0.1-1.9,0.4-2.8    c0.3-0.8,0.7-1.6,1.2-2.2c0.5-0.6,1.2-1.1,2-1.4c0.8-0.3,1.7-0.5,2.8-0.5c1,0,1.9,0.2,2.6,0.5c0.8,0.3,1.4,0.7,1.9,1.3    c0.5,0.6,0.9,1.3,1.1,2.1C199.1,199.5,199.2,200.4,199.2,201.5z M196.9,201.6c0-0.7-0.1-1.3-0.2-1.9c-0.1-0.6-0.3-1.1-0.6-1.6    c-0.3-0.4-0.7-0.8-1.2-1.1c-0.5-0.3-1.1-0.4-1.8-0.4c-0.7,0-1.3,0.1-1.7,0.4c-0.5,0.2-0.9,0.6-1.2,1c-0.3,0.4-0.5,0.9-0.7,1.5    c-0.2,0.6-0.2,1.2-0.2,1.9c0,0.7,0.1,1.3,0.2,1.9c0.1,0.6,0.3,1.1,0.6,1.6c0.3,0.4,0.7,0.8,1.2,1.1c0.5,0.3,1.1,0.4,1.8,0.4    c0.7,0,1.2-0.1,1.7-0.4c0.5-0.2,0.9-0.6,1.2-1c0.3-0.4,0.5-0.9,0.7-1.5C196.8,203,196.9,202.3,196.9,201.6z"></path>
+		<path fill="#a0a0a0" d="M226.9,196c0,0.3,0,0.5-0.1,0.7c-0.1,0.1-0.2,0.2-0.3,0.2h-1.8c0.3,0.3,0.5,0.7,0.7,1.1    c0.1,0.4,0.2,0.8,0.2,1.2c0,0.7-0.1,1.3-0.3,1.9c-0.2,0.5-0.6,1-1,1.4c-0.4,0.4-0.9,0.7-1.5,0.9c-0.6,0.2-1.2,0.3-1.9,0.3    c-0.5,0-1-0.1-1.4-0.2c-0.5-0.1-0.8-0.3-1-0.5c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.2-0.2,0.5-0.2,0.7c0,0.3,0.1,0.6,0.4,0.8    c0.3,0.2,0.7,0.3,1.2,0.3l3.2,0.1c0.6,0,1.2,0.1,1.7,0.3c0.5,0.2,1,0.4,1.3,0.6c0.4,0.3,0.7,0.6,0.9,1c0.2,0.4,0.3,0.9,0.3,1.4    c0,0.6-0.1,1.1-0.4,1.6c-0.2,0.5-0.6,1-1.1,1.3c-0.5,0.4-1.1,0.7-1.9,0.9c-0.8,0.2-1.7,0.3-2.7,0.3c-1,0-1.8-0.1-2.5-0.3    c-0.7-0.2-1.3-0.4-1.7-0.7c-0.4-0.3-0.8-0.6-1-1c-0.2-0.4-0.3-0.8-0.3-1.3c0-0.3,0-0.6,0.1-0.9c0.1-0.3,0.2-0.6,0.3-0.8    c0.2-0.3,0.3-0.5,0.6-0.7c0.2-0.2,0.5-0.5,0.8-0.7c-0.4-0.2-0.8-0.5-1-0.9c-0.2-0.3-0.3-0.7-0.3-1.1c0-0.6,0.1-1.1,0.3-1.5    c0.2-0.4,0.5-0.8,0.8-1.2c-0.3-0.3-0.5-0.7-0.7-1.1c-0.2-0.4-0.2-0.9-0.2-1.5c0-0.7,0.1-1.3,0.4-1.9c0.2-0.6,0.6-1,1-1.4    c0.4-0.4,0.9-0.7,1.5-0.9c0.6-0.2,1.2-0.3,1.9-0.3c0.4,0,0.7,0,1,0.1c0.3,0,0.6,0.1,0.9,0.2h3.7c0.2,0,0.3,0.1,0.3,0.2    C226.8,195.4,226.9,195.7,226.9,196z M224.5,209c0-0.5-0.2-0.9-0.6-1.2c-0.4-0.3-1-0.4-1.8-0.5l-3.2-0.1c-0.3,0.2-0.5,0.4-0.7,0.7    c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.2-0.2,0.4-0.2,0.6c0,0.2-0.1,0.4-0.1,0.6c0,0.6,0.3,1,0.9,1.3c0.6,0.3,1.4,0.5,2.5,0.5    c0.7,0,1.3-0.1,1.7-0.2c0.5-0.1,0.8-0.3,1.1-0.5c0.3-0.2,0.5-0.5,0.6-0.8C224.4,209.6,224.5,209.3,224.5,209z M223.4,199.2    c0-0.8-0.2-1.5-0.7-2c-0.5-0.5-1.1-0.7-2-0.7c-0.4,0-0.8,0.1-1.1,0.2c-0.3,0.1-0.6,0.3-0.8,0.6c-0.2,0.3-0.4,0.5-0.5,0.9    c-0.1,0.3-0.2,0.7-0.2,1c0,0.8,0.2,1.5,0.7,1.9c0.5,0.5,1.1,0.7,1.9,0.7c0.4,0,0.8-0.1,1.2-0.2c0.3-0.1,0.6-0.3,0.8-0.6    c0.2-0.3,0.4-0.5,0.5-0.9C223.3,199.9,223.4,199.6,223.4,199.2z"></path>
+		<path fill="#a0a0a0" d="M246.3,191.3c0,0.5-0.1,0.9-0.3,1.1s-0.6,0.3-1.1,0.3c-0.5,0-0.9-0.1-1.1-0.3c-0.2-0.2-0.3-0.5-0.3-1.1    c0-0.5,0.1-0.9,0.3-1.1c0.2-0.2,0.6-0.3,1.1-0.3c0.5,0,0.9,0.1,1.1,0.3C246.2,190.4,246.3,190.7,246.3,191.3z M246.1,207.8    c0,0.1,0,0.1-0.1,0.2c0,0-0.1,0.1-0.2,0.1c-0.1,0-0.2,0.1-0.3,0.1s-0.3,0-0.6,0c-0.2,0-0.4,0-0.5,0c-0.1,0-0.3,0-0.4-0.1    c-0.1,0-0.1-0.1-0.2-0.1c0-0.1,0-0.1,0-0.2v-12.3c0-0.1,0-0.1,0-0.2c0-0.1,0.1-0.1,0.2-0.1c0.1,0,0.2-0.1,0.4-0.1    c0.1,0,0.3,0,0.5,0c0.2,0,0.4,0,0.6,0c0.1,0,0.3,0,0.3,0.1c0.1,0,0.1,0.1,0.2,0.1s0.1,0.1,0.1,0.2V207.8z"></path>
+		<path fill="#a0a0a0" d="M274.8,201.1c0,0.4-0.1,0.6-0.3,0.8c-0.2,0.2-0.4,0.2-0.6,0.2h-8.1c0,0.7,0.1,1.3,0.2,1.8s0.4,1,0.7,1.4    c0.3,0.4,0.7,0.7,1.3,0.9s1.1,0.3,1.9,0.3c0.6,0,1.1,0,1.6-0.1s0.9-0.2,1.2-0.3c0.3-0.1,0.6-0.2,0.8-0.3c0.2-0.1,0.4-0.1,0.5-0.1    c0.1,0,0.1,0,0.2,0c0.1,0,0.1,0.1,0.1,0.1s0,0.2,0.1,0.3c0,0.1,0,0.3,0,0.4c0,0.1,0,0.2,0,0.3c0,0.1,0,0.2,0,0.2    c0,0.1,0,0.1-0.1,0.2c0,0.1-0.1,0.1-0.1,0.2c-0.1,0-0.2,0.1-0.4,0.2c-0.2,0.1-0.6,0.2-1,0.3c-0.4,0.1-0.8,0.2-1.4,0.3    c-0.5,0.1-1.1,0.1-1.7,0.1c-1,0-1.9-0.1-2.7-0.4c-0.8-0.3-1.4-0.7-1.9-1.3c-0.5-0.6-0.9-1.3-1.2-2.1c-0.3-0.8-0.4-1.8-0.4-2.9    c0-1.1,0.1-2,0.4-2.9c0.3-0.8,0.7-1.6,1.2-2.2c0.5-0.6,1.1-1,1.9-1.4c0.7-0.3,1.5-0.5,2.5-0.5c1,0,1.8,0.2,2.5,0.5    c0.7,0.3,1.2,0.7,1.7,1.3c0.4,0.5,0.8,1.1,1,1.8c0.2,0.7,0.3,1.5,0.3,2.3V201.1z M272.5,200.4c0-1.2-0.2-2.1-0.8-2.8    c-0.6-0.7-1.4-1-2.5-1c-0.6,0-1.1,0.1-1.5,0.3c-0.4,0.2-0.8,0.5-1.1,0.8c-0.3,0.3-0.5,0.7-0.7,1.2c-0.2,0.5-0.2,0.9-0.3,1.4H272.5    z"></path>
+		<path fill="#a0a0a0" d="M300,204.4c0,0.6-0.1,1.2-0.4,1.7c-0.2,0.5-0.6,0.9-1,1.2s-0.9,0.6-1.5,0.8c-0.6,0.2-1.2,0.3-2,0.3    c-0.4,0-0.9,0-1.3-0.1c-0.4-0.1-0.8-0.2-1.1-0.3c-0.3-0.1-0.6-0.2-0.8-0.3c-0.2-0.1-0.4-0.2-0.5-0.3c-0.1-0.1-0.2-0.2-0.2-0.4    c0-0.2-0.1-0.4-0.1-0.7c0-0.2,0-0.3,0-0.4c0-0.1,0-0.2,0.1-0.3c0-0.1,0.1-0.1,0.1-0.2c0.1,0,0.1,0,0.2,0c0.1,0,0.2,0.1,0.4,0.2    c0.2,0.1,0.4,0.3,0.7,0.4c0.3,0.1,0.6,0.3,1,0.4c0.4,0.1,0.8,0.2,1.4,0.2c0.4,0,0.7,0,1-0.1c0.3-0.1,0.6-0.2,0.8-0.4    c0.2-0.2,0.4-0.4,0.5-0.6c0.1-0.2,0.2-0.5,0.2-0.9c0-0.3-0.1-0.6-0.3-0.9s-0.4-0.4-0.7-0.6s-0.6-0.3-1-0.5    c-0.4-0.1-0.7-0.3-1.1-0.4c-0.4-0.2-0.8-0.3-1.1-0.5c-0.4-0.2-0.7-0.4-1-0.7s-0.5-0.6-0.7-1c-0.2-0.4-0.3-0.9-0.3-1.4    c0-0.5,0.1-0.9,0.3-1.4c0.2-0.4,0.5-0.8,0.8-1.2c0.4-0.3,0.8-0.6,1.4-0.8c0.6-0.2,1.2-0.3,2-0.3c0.3,0,0.7,0,1,0.1    c0.3,0.1,0.6,0.1,0.9,0.2s0.5,0.2,0.7,0.3c0.2,0.1,0.3,0.2,0.4,0.3c0.1,0.1,0.2,0.1,0.2,0.2s0.1,0.1,0.1,0.2c0,0.1,0,0.2,0,0.3    c0,0.1,0,0.2,0,0.4c0,0.2,0,0.3,0,0.4c0,0.1,0,0.2-0.1,0.3s-0.1,0.1-0.1,0.2c0,0-0.1,0-0.2,0c-0.1,0-0.2,0-0.4-0.2    c-0.2-0.1-0.4-0.2-0.6-0.3c-0.2-0.1-0.5-0.2-0.9-0.3c-0.3-0.1-0.7-0.2-1.1-0.2c-0.4,0-0.7,0-1,0.1c-0.3,0.1-0.5,0.2-0.7,0.4    c-0.2,0.2-0.3,0.4-0.4,0.6c-0.1,0.2-0.1,0.5-0.1,0.7c0,0.4,0.1,0.7,0.3,0.9c0.2,0.2,0.4,0.5,0.7,0.6c0.3,0.2,0.6,0.3,1,0.5    c0.4,0.1,0.8,0.3,1.1,0.5c0.4,0.2,0.8,0.3,1.2,0.5s0.7,0.4,1,0.7c0.3,0.3,0.5,0.6,0.7,1C299.9,203.4,300,203.9,300,204.4z"></path>
+	</g>
+</g>
+			</svg>
+		</div>
+		
+			<div id="main-menu">
+			<div id="apps-btn">
+				<svg viewBox="0 0 16 16" preserveAspectRatio="xMidYMid meet" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+					<path fill="#a0a0a0" d="M0,0h4v4H0V0z"></path><path fill="#a0a0a0" d="M6,0h4v4H6V0z"></path><path fill="#a0a0a0" d="M12,0h4v4h-4V0z"></path><path fill="#a0a0a0" d="M0,6h4v4H0V6z"></path><path fill="#a0a0a0" d="M6,6h4v4H6V6z"></path><path fill="#a0a0a0" d="M12,6h4v4h-4V6z"></path><path fill="#a0a0a0" d="M0,12h4v4H0V12z"></path><path fill="#a0a0a0" d="M6,12h4v4H6V12z"></path><path fill="#a0a0a0" d="M12,12h4v4h-4V12z"></path>
+				</svg>
+			</div>
+			<div id="profile-btn" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/admin.jpg);  background-size:     cover; background-position: center center;">
+			
+			</div>
+			<div id="profile-area">
+				<div style="width: 100%; height: 96px; direction: ltr; padding: 22px 0px">
+					<div id="profile" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/admin.jpg);  background-size:     cover; background-position: center center;">
+					</div>
+					<span style="font-family: calibri;">admin</span> <br>
+					<span style="font-family: calibri;">Taleb</span>
+					<span style="font-family: calibri;">Mohammed Housseyn</span>
+					
+				</div>
+				<div style="width: 100%; height: 50px; background: #f9f9f9; border-top: 1px solid #eeeeee;">
+					<form method="post" action="http://localhost:9999/facturation/logout">
+						<input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c">
+						<button id="logout" class="btn " style="width:110px;margin:10px 10px; height:30px;">Déconnexion</button>
+					<input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c"></form>
+				</div>			
+			</div>
+			<div id="apps-area">
+				<ul class="apps-list">
+					<li class="app" id="app0">
+					    <form style="all:unset;" method="get" target="_blank" action="http://localhost:9999/facturation//">
+					    <input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c">
+					    <button style="all:unset;">
+					    <div class="app-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/Facturation.svg);"></div>
+						<span class="app-title">Facturation</span>
+						</button>
+					    </form>
+						</li>
+					<li class="app" id="app1">
+					    <form style="all:unset;" method="get" target="_blank" action="http://localhost:9999/rendezvous//">
+					    <input type="hidden" name="_csrf" value="d4840f7a-b42a-446a-a421-35ca9356f01c">
+					    <button style="all:unset;">
+					    <div class="app-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/rendezVous.svg);"></div>
+						<span class="app-title">rendezVous</span>
+						</button>
+					    </form>
+						</li>
+				</ul>
+			</div>
+		</div>
+		
+    </div>
+	
+	<div id="menu0" class="menu-V">
+		<ul class="menu-V-functions">
+			<li id="menu0-func0" class="menu-V-func">
+				<div class="menu-V-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/Acceuil.svg);"></div>
+				<span class="menu-V-func-title">Acceuil</span>
+			</li>
+			<li id="menu0-func1" class="menu-V-func menu-V-func-selected">
+				<div class="menu-V-func-icon menu-V-func-icon-selected" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/Client.svg);"></div>
+				<span class="menu-V-func-title">Client</span>
+			</li>
+			<li id="menu0-func2" class="menu-V-func">
+				<div class="menu-V-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/Facture.svg);"></div>
+				<span class="menu-V-func-title">Facture</span>
+			</li>
+			<li id="menu0-func3" class="menu-V-func">
+				<div class="menu-V-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/Rapport.svg);"></div>
+				<span class="menu-V-func-title">Rapport</span>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	
+	<div class="container">
+		<div id="menu0-func0-panel" class="main-panel" style="display: none;">
+			<div id="stat-panel-accueil" class="stat-panel">
+				<div class="user-information">
+					<span>Conforama</span>
+					<a id="companySettingsLink" class="company-settings-link">Modifier les coordonnées</a>
+				</div>
+				<div class="stat-container">
+				</div>
+			</div>
+			<div id="notification-panel-accueil" class="notification-panel">
+				
+			</div>
+		</div>
+		<div id="menu0-func1-panel" class="main-panel" style="display: block;">
+			<div id="list-panel-client" class="list-panel">
+				<form id="search-client-form" class="search-client-form">
+					<input id="search-client" class="search-edit" type="text" placeholder="Rechercher un client...">
+				</form>
+				<div id="extend-arrow-func1" class="extend-arrow extend-arrow-right"></div>
+				<div style="height: calc(100% - 62px);">
+					<div class="grid">
+						<div class="list-header-container">
+							<div class="list-header">
+								<div class="column left" style="width: 50px;">Réf.</div>
+								<div class="column left" style="width: 50%;">Identifiant</div>
+								<div class="column left" style="width: 50%;">Nom</div>
+								<div class="column left dynamic" style="width: 180px; display: none;">Adresse</div>
+								<div class="column left dynamic" style="width: 180px; display: none;">Ville</div>
+								<div class="column left dynamic" style="width: 120px; display: none;">Téléphone</div>
+								<div class="column left dynamic" style="width: 120px; display: none;">Portable</div>
+								<div class="column left" style="width: 50%;">E-mail</div>
+								<div class="column left dynamic" style="width: 120px; display: none;">Non facturé</div>
+							</div>
+							<div id="menu1" class="menu-H">
+								<ul class="menu-H-functions">
+									<li class="menu-H-func" id="menu1-func0">
+										<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/new.svg);"></div>
+										<span class="menu-H-func-title">Nouveau</span>
+									</li>
+									<li class="menu-H-func" id="menu1-func1">
+										<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/new.svg);"></div>
+										<span class="menu-H-func-title">Editer</span>
+									</li>
+									<li class="menu-H-func" id="menu1-func2">
+										<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/export.svg);"></div>
+										<span class="menu-H-func-title">Exporter</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="clientList" class="list-body-container has-footer"> 
+<div id="cl0" onclick="setSelectedClient(&#39;CLI201801&#39;)" class="row">
+<div class="column right" style="width: 50px;">CLI201801</div>
+<div class="column left" style="width: 50%;">TalcorpDZ</div>
+<div class="column left" style="width: 50%;">Taleb Mohammed Housseyn</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Batiments des enseignants Mohammed Khemisti</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Maghnia</div>
+<div class="column left dynamic" style="width: 120px; display: none;">04330256699</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left" style="width: 50%;">talcorpdz@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl1" onclick="setSelectedClient(&#39;dfghjk&#39;)" class="row">
+<div class="column right" style="width: 50px;">dfghjk</div>
+<div class="column left" style="width: 50%;">lkjhgf</div>
+<div class="column left" style="width: 50%;">Taleb Mohammed</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Batiments des enseignants Mohammed Khemist</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Maghnia</div>
+<div class="column left dynamic" style="width: 120px; display: none;">02354649</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left" style="width: 50%;">talcorpdz@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl2" onclick="setSelectedClient(&#39;GIUYDSKFJG&#39;)" class="row row-selected">
+<div class="column right" style="width: 50px;">GIUYDSKFJG</div>
+<div class="column left" style="width: 50%;">KJBMKUGPHMSDF</div>
+<div class="column left" style="width: 50%;">LKSDFS KJHSDF</div>
+<div class="column left dynamic" style="width: 180px; display: none;">FKUYFLSDFSFJHFOY</div>
+<div class="column left dynamic" style="width: 180px; display: none;">KJHGKJHVLUY</div>
+<div class="column left dynamic" style="width: 120px; display: none;">12313546516</div>
+<div class="column left dynamic" style="width: 120px; display: none;">13216465432</div>
+<div class="column left" style="width: 50%;">JHSDF@KGDSFHFK.COM</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl3" onclick="setSelectedClient(&#39;GIUYG.&#39;)" class="row">
+<div class="column right" style="width: 50px;">GIUYG.</div>
+<div class="column left" style="width: 50%;">KJBMKUGPHM</div>
+<div class="column left" style="width: 50%;">LKJ?NBKT KJHV?N</div>
+<div class="column left dynamic" style="width: 180px; display: none;">FKUYFLJ.JHFOY</div>
+<div class="column left dynamic" style="width: 180px; display: none;">KJHGKJHVLUY</div>
+<div class="column left dynamic" style="width: 120px; display: none;">12313546516</div>
+<div class="column left dynamic" style="width: 120px; display: none;">13216465432</div>
+<div class="column left" style="width: 50%;">JHGJ@KGHFK.COM</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl4" onclick="setSelectedClient(&#39;gkdjsgfkjhg&#39;)" class="row">
+<div class="column right" style="width: 50px;">gkdjsgfkjhg</div>
+<div class="column left" style="width: 50%;">jdhgfjkhkg</div>
+<div class="column left" style="width: 50%;">kjdhgfieup jhdkfhb</div>
+<div class="column left dynamic" style="width: 180px; display: none;">dhfgkhfg</div>
+<div class="column left dynamic" style="width: 180px; display: none;">hjgdsfk</div>
+<div class="column left dynamic" style="width: 120px; display: none;">3213546454</div>
+<div class="column left dynamic" style="width: 120px; display: none;">654654321</div>
+<div class="column left" style="width: 50%;">jhgdfk@djf.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl5" onclick="setSelectedClient(&#39;iuefhlkjh&#39;)" class="row">
+<div class="column right" style="width: 50px;">iuefhlkjh</div>
+<div class="column left" style="width: 50%;">lkjhldkjfh</div>
+<div class="column left" style="width: 50%;">	flkjdshfkjh lkjdhf</div>
+<div class="column left dynamic" style="width: 180px; display: none;">dskfhkjhg</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ljdfjb</div>
+<div class="column left dynamic" style="width: 120px; display: none;">3216548</div>
+<div class="column left dynamic" style="width: 120px; display: none;">6543215</div>
+<div class="column left" style="width: 50%;">jdsl@dkf.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl6" onclick="setSelectedClient(&#39;kjdskfjg&#39;)" class="row">
+<div class="column right" style="width: 50px;">kjdskfjg</div>
+<div class="column left" style="width: 50%;">kjgkdsjgfjkhgk</div>
+<div class="column left" style="width: 50%;">uuuuu uuuuu</div>
+<div class="column left dynamic" style="width: 180px; display: none;">test</div>
+<div class="column left dynamic" style="width: 180px; display: none;">vill</div>
+<div class="column left dynamic" style="width: 120px; display: none;">35465465</div>
+<div class="column left dynamic" style="width: 120px; display: none;">026546498</div>
+<div class="column left" style="width: 50%;">jdshgf@gm.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl7" onclick="setSelectedClient(&#39;REF001&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF001</div>
+<div class="column left" style="width: 50%;">IDE001</div>
+<div class="column left" style="width: 50%;">NOM PRENOM</div>
+<div class="column left dynamic" style="width: 180px; display: none;">adresse limit 50</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ville</div>
+<div class="column left dynamic" style="width: 120px; display: none;">07 77 77 77 77</div>
+<div class="column left dynamic" style="width: 120px; display: none;">05 55 55 55 55</div>
+<div class="column left" style="width: 50%;">mail@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl8" onclick="setSelectedClient(&#39;REF002&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF002</div>
+<div class="column left" style="width: 50%;">ID002</div>
+<div class="column left" style="width: 50%;">azerty azerty</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ad</div>
+<div class="column left dynamic" style="width: 180px; display: none;">vil</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0321546213</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0565486415</div>
+<div class="column left" style="width: 50%;">test@test.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl9" onclick="setSelectedClient(&#39;REF003&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF003</div>
+<div class="column left" style="width: 50%;">ID003</div>
+<div class="column left" style="width: 50%;">NOM 033 PRENOM 0333</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ADresse 3</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ville 3</div>
+<div class="column left dynamic" style="width: 120px; display: none;">07 7777777</div>
+<div class="column left dynamic" style="width: 120px; display: none;">05 5555555</div>
+<div class="column left" style="width: 50%;">EMAIL@Mail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl10" onclick="setSelectedClient(&#39;REF08&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF08</div>
+<div class="column left" style="width: 50%;">ID08</div>
+<div class="column left" style="width: 50%;">NOM08 PRENOM08</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ADREE</div>
+<div class="column left dynamic" style="width: 180px; display: none;">VILLEE</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0765984353</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0564654865</div>
+<div class="column left" style="width: 50%;">EMAIL@MAIL.COM</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl11" onclick="setSelectedClient(&#39;REF89&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF89</div>
+<div class="column left" style="width: 50%;">IDENTIFIA007</div>
+<div class="column left" style="width: 50%;">JAmes Bond</div>
+<div class="column left dynamic" style="width: 180px; display: none;">not defined</div>
+<div class="column left dynamic" style="width: 180px; display: none;">unknown</div>
+<div class="column left dynamic" style="width: 120px; display: none;">07777</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0777</div>
+<div class="column left" style="width: 50%;">JB@007.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl12" onclick="setSelectedClient(&#39;REF9999&#39;)" class="row">
+<div class="column right" style="width: 50px;">REF9999</div>
+<div class="column left" style="width: 50%;">IDENTIFIANT 9999</div>
+<div class="column left" style="width: 50%;">99999 999999</div>
+<div class="column left dynamic" style="width: 180px; display: none;">adresse de 9999</div>
+<div class="column left dynamic" style="width: 180px; display: none;">ville de 999</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0750505050</div>
+<div class="column left dynamic" style="width: 120px; display: none;">043303030</div>
+<div class="column left" style="width: 50%;">999@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl13" onclick="setSelectedClient(&#39;sdsdf&#39;)" class="row">
+<div class="column right" style="width: 50px;">sdsdf</div>
+<div class="column left" style="width: 50%;">sdfsdfsdf</div>
+<div class="column left" style="width: 50%;">housseyn Taleb</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Batiments des enseignants</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Maghnia</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left dynamic" style="width: 120px; display: none;">0778217469</div>
+<div class="column left" style="width: 50%;">talcorpdz@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl14" onclick="setSelectedClient(&#39;sdsqdqs&#39;)" class="row">
+<div class="column right" style="width: 50px;">sdsqdqs</div>
+<div class="column left" style="width: 50%;">sqdsqd</div>
+<div class="column left" style="width: 50%;">Taleb Mohammed</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Batiments des enseignants </div>
+<div class="column left dynamic" style="width: 180px; display: none;">Maghnia</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left" style="width: 50%;">talcorpdz@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl15" onclick="setSelectedClient(&#39;xcghbjnokl&#39;)" class="row">
+<div class="column right" style="width: 50px;">xcghbjnokl</div>
+<div class="column left" style="width: 50%;">cytughb</div>
+<div class="column left" style="width: 50%;">Taleb Mohammed</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Batiments des Khemisti Maghnia</div>
+<div class="column left dynamic" style="width: 180px; display: none;">Maghnia</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left dynamic" style="width: 120px; display: none;">+213778217469</div>
+<div class="column left" style="width: 50%;">talcorpdz@gmail.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div>
+<div id="cl16" onclick="setSelectedClient(&#39;ytiusdof&#39;)" class="row">
+<div class="column right" style="width: 50px;">ytiusdof</div>
+<div class="column left" style="width: 50%;">yiouhpkjl</div>
+<div class="column left" style="width: 50%;">uuuuu uuuuu</div>
+<div class="column left dynamic" style="width: 180px; display: none;">test</div>
+<div class="column left dynamic" style="width: 180px; display: none;">vill</div>
+<div class="column left dynamic" style="width: 120px; display: none;">35465465</div>
+<div class="column left dynamic" style="width: 120px; display: none;">026546498</div>
+<div class="column left" style="width: 50%;">jdshgf@gm.com</div>
+<div class="column right dynamic" style="width: 120px; display: none;">0,00 DZD</div>
+</div></div>
+						<div class="footer">
+							<div class="column right hasSummary" style="width: 50px;">Total</div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column right hasSummary" style="width: 120px; display: none;">0,00 DZD</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div id="detail-panel-client" class="detail-panel">
+				<div id="func1-tabs" class="tabs">
+					<ul>
+						<li id="func1-tab0" class="tab tab-selected">Coordonnées</li>
+						<li id="func1-tab1" class="tab">Factures</li>
+						<li id="func1-tab2" class="tab">Commentaires</li>
+					</ul>
+					<div id="tabs-container" class="tabs-container">
+						<div id="container-func1-tab0" class="tab-container" style="display: block;">
+<div style="padding: 20px 40px;">	
+<h1>Fiche Client </h1>
+<p style="padding-left: 30px;"><strong>Réference&nbsp; : </strong>GIUYDSKFJG</p>
+<p style="padding-left: 30px;"><strong>Identifiant :&nbsp;</strong>KJBMKUGPHMSDF</p>
+<p style="padding-left: 30px;"><strong>Type :&nbsp;</strong>Entreprise</p>
+<p style="padding-left: 30px;"><strong>Etat :&nbsp;</strong>Active</p>
+<p style="padding-left: 30px;"><strong>Nom Complét :&nbsp;</strong>LKSDFS KJHSDF</p>
+<p style="padding-left: 30px;"><strong>Téléphone&nbsp; :&nbsp;</strong>12313546516</p>
+<p style="padding-left: 30px;"><strong>Fixe :&nbsp;</strong>13216465432</p>
+<p style="padding-left: 30px;"><strong>Adresse :&nbsp;</strong>FKUYFLSDFSFJHFOY</p>
+<p style="padding-left: 30px;"><strong>Ville :&nbsp;</strong>KJHGKJHVLUY</p>
+<button onclick="updateClient()" class="btn" style="width:110px;">modifier</button> <button id="delete-client" class="btn" style="width:110px;">suprimmer</button>
+</div>
+</div>
+						<div id="container-func1-tab1" class="tab-container">
+						tab2
+						</div>
+						<div id="container-func1-tab2" class="tab-container">
+						tab3
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div id="menu0-func2-panel" class="main-panel" style="display: none;">
+			<div id="list-panel-client" class="list-panel">
+				<form id="search-client-form" class="search-client-form">
+					<input id="search-client" class="search-edit" type="text" placeholder="Rechercher une facture...">
+				</form>
+				<div style="height: calc(100% - 62px);">				
+					<div class="grid">
+						<div class="list-header-container">
+							<div class="list-header">
+								<div class="column left" style="width: 50px;">Réf.</div>
+								<div class="column left" style="width: 50%;">Nom</div>
+								<div class="column left" style="width: 180px; display: none;">Adresse</div>
+								<div class="column left" style="width: 180px; display: none;">Ville</div>
+								<div class="column left" style="width: 120px; display: none;">Téléphone</div>
+								<div class="column left" style="width: 120px; display: none;">Portable</div>
+								<div class="column left sortBy desc" style="width: 50%;">E-mail</div>
+								<div class="column right" style="width: 120px; display: none;">Non facturé</div>
+							</div>
+							<div id="menu2" class="menu-H">
+								<ul class="menu-H-functions">
+									<li class="menu-H-func" id="menu2-func0">
+										<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/new.svg);"></div>
+										<span class="menu-H-func-title">Nouveau</span>
+									</li>
+									<li class="menu-H-func" id="menu2-func1">
+										<div class="menu-H-func-icon" style="background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/export.svg);"></div>
+										<span class="menu-H-func-title">Exporter</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="list-body-container has-footer">
+							<div id="ft0" class="row">
+								<div class="column right Static" style="width: 50px;">1</div>
+								<div class="column left" style="width: 50%;">Customer Company Ltd.</div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com</div>
+								<div class="column right Static" style="width: 120px; display: none;">0,00 DZD</div>
+							</div>
+							<div id="ft0" class="row">
+								<div class="column right Static" style="width: 50px;">1</div>
+								<div class="column left" style="width: 50%;">Customer Company Ltd.</div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 180px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left Static" style="width: 120px; display: none;"></div>
+								<div class="column left" style="width: 50%;">abderrazak.semmoud@gmail.com</div>
+								<div class="column right Static" style="width: 120px; display: none;">0,00 DZD</div>
+							</div>
+						</div>
+						<div class="footer">
+							<div class="column right hasSummary" style="width: 50px;">Total</div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 180px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 120px; display: none;"></div>
+							<div class="column left" style="width: 50%;"></div>
+							<div class="column right hasSummary" style="width: 120px; display: none;">0,00 DZD</div>
+						</div>
+					</div>
+				</div>				
+			</div>
+			<div id="detail-panel-facture" class="detail-panel">
+				<div id="func2-tabs" class="tabs">
+					<ul>
+						<li id="func2-tab0" class="tab tab-selected">Coordonnées</li>
+						<li id="func2-tab1" class="tab">Factures</li>
+						<li id="func2-tab2" class="tab">Commentaires</li>
+					</ul>
+					<div id="tabs-container" class="tabs-container">
+						<div id="container-func2-tab0" class="tab-container" style="display: block;">
+						tab4
+						</div>
+						<div id="container-func2-tab1" class="tab-container">
+						tab5
+						</div>
+						<div id="container-func2-tab2" class="tab-container">
+						tab6
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="menu0-func3-panel" class="main-panel" style="display: none;">rapp
+		</div>
+	</div>
+</div>
+
+</body></html>

@@ -1,0 +1,12 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<ul class="menu-V-functions" th:if="${menuV}" th:remove="all-but-first" >
+			<li th:each="menu,iter : ${menuV}" th:id="'menu0-func'+${iter.index}" th:class="'menu-V-func '+${iter.index == 0 ?'menu-V-func-selected':''} ">
+				<div th:class="'menu-V-func-icon '+${iter.index == 0 ? 'menu-V-func-icon-selected':''}" th:style="'background-image: url(http://localhost:9999/MDS-WEB-RESSOURCE/graphics/'+${menu.iconPath}+');'"></div>
+				<span class="menu-V-func-title" style="height: 30px;" th:text="${menu.menuName}">Accueil</span>
+			</li>
+		</ul>
+	</body>
+</html>

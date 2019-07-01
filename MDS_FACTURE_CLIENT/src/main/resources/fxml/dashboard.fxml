@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<StackPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mds.facture.client.dashboard.DashboardController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="617.0" prefWidth="999.0" style="-fx-background-color: white;">
+          <stylesheets>
+              <URL value="@/styles/theme.css" />
+          </stylesheets>
+         <children>
+            <VBox styleClass="borderPaneColor" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="40.0">
+                     <children>
+                        <SVGPath fx:id="Logo" content="M 23.6875 16.246094 L 22.394531 14.949219 L 23.6875 13.65625 C 23.84375 13.5 23.84375 13.253906 23.6875 13.097656 L 18.574219 7.984375 C 18.417969 7.832031 18.171875 7.832031 18.015625 7.984375 L 12.984375 13.015625 L 7.558594 7.589844 C 7.402344 7.4375 7.152344 7.4375 7 7.589844 L 1.886719 12.707031 C 1.730469 12.859375 1.730469 13.109375 1.886719 13.261719 L 4.753906 16.132812 L 0.195312 16.132812 L 0.195312 16.917969 L 5.3125 16.917969 C 5.363281 16.917969 5.417969 16.90625 5.464844 16.886719 L 8.144531 15.738281 L 13.96875 15.738281 L 13.96875 17.3125 L 9.640625 17.3125 C 9.421875 17.3125 9.246094 17.488281 9.246094 17.703125 C 9.246094 17.859375 9.335938 17.996094 9.472656 18.0625 L 14.589844 20.421875 C 14.71875 20.480469 14.867188 20.464844 14.984375 20.382812 L 21.796875 15.464844 L 22.832031 16.503906 L 15.003906 23.214844 L 12.855469 23.214844 L 5.449219 20.484375 C 5.402344 20.46875 5.359375 20.460938 5.3125 20.457031 L 0.195312 20.457031 L 0.195312 21.246094 L 5.242188 21.246094 L 12.652344 23.976562 C 12.695312 23.992188 12.742188 24 12.785156 24 L 15.148438 24 C 15.242188 24 15.332031 23.964844 15.402344 23.90625 L 23.664062 16.824219 C 23.832031 16.683594 23.851562 16.433594 23.707031 16.269531 C 23.703125 16.261719 23.695312 16.253906 23.6875 16.246094 Z M 8.066406 14.949219 C 8.011719 14.949219 7.960938 14.960938 7.910156 14.984375 L 7.816406 15.023438 C 8.203125 14.015625 9.335938 13.511719 10.34375 13.898438 C 10.835938 14.089844 11.226562 14.46875 11.4375 14.949219 Z M 12.277344 14.949219 C 11.933594 13.78125 10.859375 12.980469 9.640625 12.984375 C 8.246094 12.992188 7.078125 14.03125 6.90625 15.414062 L 5.675781 15.941406 L 2.71875 12.984375 L 7.277344 8.425781 L 13.804688 14.949219 Z M 14.710938 19.613281 L 11.429688 18.097656 L 14.359375 18.097656 C 14.578125 18.097656 14.753906 17.921875 14.753906 17.703125 L 14.753906 15.902344 L 16.890625 18.035156 Z M 14.792969 14.824219 C 14.941406 13.984375 15.671875 13.375 16.523438 13.375 C 17.5 13.375 18.292969 14.164062 18.292969 15.140625 C 18.296875 15.992188 17.6875 16.726562 16.847656 16.882812 Z M 17.484375 17.519531 C 17.644531 17.453125 17.792969 17.375 17.9375 17.28125 L 17.535156 17.570312 Z M 21.582031 14.648438 L 18.113281 17.152344 C 19.21875 16.273438 19.398438 14.664062 18.519531 13.558594 C 17.640625 12.457031 16.03125 12.273438 14.925781 13.152344 C 14.585938 13.425781 14.316406 13.78125 14.152344 14.1875 L 13.539062 13.574219 L 18.296875 8.820312 L 22.855469 13.375 Z M 21.582031 14.648438 " scaleX="2.0" scaleY="2.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </SVGPath>
+                        <Label fx:id="user" text="Taleb Mohammed Housseyn">
+                           <font>
+                              <Font name="Calibri Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <JFXButton onAction="#disconnect" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Quitter">
+                                 <font>
+                                    <Font name="Calibri Bold" size="14.0" />
+                                 </font>
+                              </JFXButton>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="18.0" left="25.0" right="18.0" top="18.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="mainColor" />
+                        <String fx:value="borderBottomColor" />
+                     </styleClass>
+                  </HBox>
+                  <SplitPane dividerPositions="0.8595787362086259" prefHeight="518.0" prefWidth="1122.0" VBox.vgrow="ALWAYS">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="mainColor">
+                           <children>
+                              <VBox layoutX="20.0" layoutY="20.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                 <children>
+                                    <HBox spacing="25.0">
+                                       <children>
+                                          <JFXButton onAction="#showFactures" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Facture" textFill="WHITE">
+                                             <font>
+                                                <Font name="Calibri Bold" size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <JFXButton onAction="#showArticles" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Article">
+                                             <font>
+                                                <Font name="Calibri Bold" size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <JFXButton onAction="#showArchives" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Archive">
+                                                   <font>
+                                                      <Font name="Calibri Bold" size="14.0" />
+                                                   </font>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <PieChart fx:id="chartStat" prefHeight="447.0" prefWidth="732.0" title="Rapport Revenu/Prevu" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="552.0" prefWidth="199.0" styleClass="mainColor">
+                           <children>
+                              <VBox fx:id="vboxSide" alignment="TOP_CENTER" layoutX="20.0" layoutY="42.0" spacing="25.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="45.0">
+                                 <children>
+                                    <JFXButton onAction="#showClients" prefHeight="34.0" prefWidth="103.0" ripplerFill="#320202" text="Clients">
+                                       <font>
+                                          <Font name="Calibri Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton onAction="#showDevise" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Devise">
+                                       <font>
+                                          <Font name="Calibri Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton onAction="#showTVA" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="TVA">
+                                       <font>
+                                          <Font name="Calibri Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton onAction="#showStatistique" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Statistiques">
+                                       <font>
+                                          <Font name="Calibri Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                    <JFXButton onAction="#showParam" prefHeight="34.0" prefWidth="104.0" ripplerFill="#320202" text="Paramètres">
+                                       <font>
+                                          <Font name="Calibri Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </VBox>
+         </children>
+         <styleClass>
+            <String fx:value="mainFxmlClass" />
+            <String fx:value="borderPaneColor" />
+         </styleClass>
+      </AnchorPane>
+   </children>
+</StackPane>

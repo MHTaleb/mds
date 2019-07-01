@@ -1,0 +1,150 @@
+.menu-V{
+	width: 60px;
+    height: calc(100% - 56px);
+    float: left;
+    margin-left: 0px;
+    margin-top: 56px;
+    z-index: 999999;
+    position: absolute;
+}
+
+.menu-V-functions{
+	padding: 14px 10px;
+	margin: 0px;
+}
+
+.menu-V-func{
+	width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: 10px;
+	border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.menu-V-func:hover .menu-V-func-title{
+	display: block;
+}
+
+.menu-V-func:hover{
+	opacity: 1;
+}
+
+.menu-V-func-selected{
+    background-color: rgba(var(--application-color), 1);
+	opacity: 1;
+}
+
+.menu-V-func-icon{
+	width: 30px;
+    height: 30px;
+    margin: 5px;
+    background-repeat: no-repeat;
+    background-position: 50% 2px;
+	background-size: 26px;
+}
+
+.menu-V-func-icon-selected{
+    background-position: 50% 110%;
+}
+
+.menu-V-func-title {
+	background-color: #666666;
+    border: #515151 solid 1px;
+    color: #D6D6D6;
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 12px;
+    margin: -33px 47px;
+    height: 12px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    float: left;
+    border-radius: 2px;
+	overflow: hidden;
+	display: none;
+}
+
+
+
+
+.menu-H{
+	width: fit-content;
+}
+
+.menu-H-functions{
+	padding: 0px;
+	margin: auto;
+	display: table;
+    border-spacing: 3px 0px;
+}
+
+.menu-H-functions > *{
+	margin: 0px 3px;
+}
+
+.menu-H-func{
+	position: relative;
+	width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.5;
+    display: table-cell;
+    list-style-type: none;
+}
+
+.menu-H-func-large{
+	width: 50px;
+    height: 50px;
+}
+
+.menu-H-func:hover{
+	opacity: 1;
+}
+
+.menu-H-func:hover .menu-H-func-title{
+	display: block;
+}
+
+.menu-H-func-selected{
+    background-color: rgba(var(--application-color), 1);
+	opacity: 1;
+}
+
+.menu-H-func-icon{
+	width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: 50% 2px;
+	background-size: 25px;
+	background-position: center;
+}
+
+.menu-H-func-icon-large{
+	width: 50px;
+    height: 50px;
+	background-size: 35px;
+}
+
+.menu-H-func-title {
+	position: absolute;
+	color: #666666;
+    width: 100px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    margin: -43px -35px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    display: none;
+}
+
+.menu-H-func-title-large {
+    margin: -60px -28px;
+}
